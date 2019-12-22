@@ -16,6 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
+        private const string APP_VERSION = "(v0.2)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -32,6 +33,7 @@ namespace Calder1
 		private const string MENU_DELETE_RECORD = "Delete record";
 		private const string MENU_COPY_TITLE = "Copy title";
 		private const string MENU_COPY_LABELS = "Copy labels";
+        private const string MENU_TOGGLE_FAV = "Toggle Favorite";
 		private const string MENU_RENAME_FILE = "Rename file";
 		private const string MENU_EXPORT_FILE = "Export file";
 		private const string MENU_COPY_FILE_PATH = "Copy file path";
@@ -52,7 +54,7 @@ namespace Calder1
 		public MainForm()
 		{
 			InitializeComponent();
-			Text = APP_NAME;
+            Text = APP_NAME + " " + APP_VERSION;
 
 			ssInfoRecord.Text = "";
 			ssInfoSelected.Text = "";
@@ -368,6 +370,7 @@ namespace Calder1
 			m.MenuItems.Add(MENU_DELETE_RECORD, RightClickMenu);
 			m.MenuItems.Add(MENU_COPY_TITLE, RightClickMenu); 
 			m.MenuItems.Add(MENU_COPY_LABELS, RightClickMenu);
+            m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
 			if (_recordRightClick.Kind == Calder1Repository.KIND_DOC)
 			{
 				m.MenuItems.Add("-");
@@ -424,6 +427,13 @@ namespace Calder1
 				Clipboard.SetText(_recordRightClick.Labels);
 				return;
 			}
+
+            if (menu == MENU_TOGGLE_FAV)
+            {
+                _recordRightClick.InvertFavorite();
+                UpdateUI();
+                return;
+            }
 
 			if (menu == MENU_RENAME_FILE)
 			{
@@ -644,7 +654,7 @@ namespace Calder1
 			if (!tscRepo.Items.Contains(repoFilePath))
 				tscRepo.Items.Add(repoFilePath);
 			tscRepo.Text = repoFilePath;
-			Text = APP_NAME + " - " + _repo.CSVFilePath;
+			Text = APP_NAME + " " + APP_VERSION + " - " + _repo.CSVFilePath;
 
 			UpdateUI(null, tsbFavorite.Checked);
             _openingRepo = false;

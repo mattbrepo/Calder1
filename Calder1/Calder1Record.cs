@@ -92,5 +92,13 @@ namespace Calder1
 			return Favorite == Calder1Repository.FAVORITE;
 		}
 
+        internal void InvertFavorite()
+        {
+            if (IsFavorite())
+                Favorite = "";
+            else
+                Favorite = Calder1Repository.FAVORITE;
+        }
+
 	}
 }
