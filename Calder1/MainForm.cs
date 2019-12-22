@@ -496,7 +496,7 @@ namespace Calder1
         {
             DialogResult dr = _searchForm.ShowDialog();
             if (dr != System.Windows.Forms.DialogResult.OK) return;
-            //%%%UpdateUI(string searchText, bool favorite)
+            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite()); //%%% to expand, need to decide how to reset the filter...
         }
 
 		#endregion

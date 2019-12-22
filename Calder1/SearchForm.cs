@@ -18,12 +18,21 @@ namespace Calder1
 
         private void txtSearch_KeyDown(object sender, KeyEventArgs e)
         {
-            //%%%
+            if (e.KeyCode == Keys.Return)
+            {
+                this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            }
         }
 
-        private void cmdSearch_Click(object sender, EventArgs e)
+        public string GetSearchText()
         {
-            //%%%
+            return txtSearch.Text;
         }
+
+        public bool HasFavorite()
+        {
+            return chkFavorite.Checked;
+        }
+
     }
 }
