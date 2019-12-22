@@ -579,17 +579,24 @@ namespace Calder1
 		{
 			try
 			{
-				if (MessageBox.Show("Press yes to move the file or no to copy it", APP_NAME, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
-					File.Move(filePathOrURL, Path.Combine(_repo.DirPath, Path.GetFileName(filePathOrURL)));
-				else
-					File.Copy(filePathOrURL, Path.Combine(_repo.DirPath, Path.GetFileName(filePathOrURL)));
+                string filePathDest = Path.Combine(_repo.DirPath, Path.GetFileName(filePathOrURL));
+                if (MessageBox.Show("Press yes to move the file or no to copy it", APP_NAME, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.Yes)
+                {
+                    if (File.Exists(filePathDest))
+                        File.Delete(filePathDest);
+                    File.Move(filePathOrURL, filePathDest);
+                }
+                else
+                {
+                    File.Copy(filePathOrURL, filePathDest);
+                }
 
 				return true;
 			}
 			catch (Exception ex)
 			{
 				ex.ToString();
-				MessageBox.Show("Error copying/moving file", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
+				MessageBox.Show("Error on copying/moving file", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return false;
 			}
 		}

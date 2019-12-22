@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 *.lnk
+
+example/myrepo.repo
