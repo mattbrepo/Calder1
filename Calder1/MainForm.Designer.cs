@@ -70,14 +70,14 @@
             // ssInfoSelected
             // 
             this.ssInfoSelected.Name = "ssInfoSelected";
-            this.ssInfoSelected.Size = new System.Drawing.Size(11, 17);
+            this.ssInfoSelected.Size = new System.Drawing.Size(12, 17);
             this.ssInfoSelected.Text = "-";
             // 
             // ssInfoRecord
             // 
             this.ssInfoRecord.Margin = new System.Windows.Forms.Padding(15, 3, 0, 2);
             this.ssInfoRecord.Name = "ssInfoRecord";
-            this.ssInfoRecord.Size = new System.Drawing.Size(33, 17);
+            this.ssInfoRecord.Size = new System.Drawing.Size(38, 17);
             this.ssInfoRecord.Text = "nome";
             // 
             // toolStrip1
@@ -110,7 +110,7 @@
             this.tscSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tscSearch.AutoSize = false;
             this.tscSearch.Name = "tscSearch";
-            this.tscSearch.Size = new System.Drawing.Size(300, 21);
+            this.tscSearch.Size = new System.Drawing.Size(300, 23);
             this.tscSearch.ToolTipText = "Search (CTRL+S)";
             this.tscSearch.DropDownClosed += new System.EventHandler(this.tscSearch_DropDownClosed);
             this.tscSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tscSearch_KeyPress);
@@ -188,6 +188,7 @@
             this.gridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_RowEnter);
             this.gridView.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridView_DragDrop);
             this.gridView.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridView_DragEnter);
+            this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_KeyDown);
             this.gridView.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.gridView_KeyPress);
             this.gridView.MouseClick += new System.Windows.Forms.MouseEventHandler(this.gridView_MouseClick);
             // 

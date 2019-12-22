@@ -316,7 +316,8 @@ namespace Calder1
 		private void gridView_KeyPress(object sender, KeyPressEventArgs e)
 		{
 			if (_repo == null) return;
-			if (Control.ModifierKeys == Keys.Control && e.KeyChar == 10) //Return
+
+            if (Control.ModifierKeys == Keys.Control && e.KeyChar == 10) // CTRL+Return to open document
 			{
 				int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
 				Calder1Record r = _repo.Content[contentIndex];
@@ -324,7 +325,7 @@ namespace Calder1
 				return;
 			}
 
-			if (Control.ModifierKeys == Keys.Shift && e.KeyChar == 13) //Return
+			if (Control.ModifierKeys == Keys.Shift && e.KeyChar == 13) // SHIFT+Return to edit (check also F2)
 			{
 				int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
 				Calder1Record r = _repo.Content[contentIndex];
@@ -332,6 +333,19 @@ namespace Calder1
 				return;
 			}
 		}
+
+        private void gridView_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (_repo == null) return;
+
+            if (e.KeyCode == Keys.F2) // F2 to edit (check also SHIFT+Return)
+            {
+                int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
+                Calder1Record r = _repo.Content[contentIndex];
+                EditRecord(r);
+                return;
+            }
+        }
 
         private void gridView_MouseClick(object sender, MouseEventArgs e)
         {
@@ -709,7 +723,6 @@ namespace Calder1
         }
 
 		#endregion
-
 
 	}
 }
