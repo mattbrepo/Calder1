@@ -36,18 +36,19 @@ namespace Calder1
 		/// <summary>
 		/// Case insensitive contains
 		/// </summary>
-		/// <param name="fields"></param>
+		/// <param name="fields">if it starts with a minor/major char is treated as a year, if it starts with a minus remove the records containing the following word</param>
+        /// <param name="absents">fields that needs to be absent</param>
 		/// <returns></returns>
-		internal bool Contains(string[] fields)
+        internal bool Contains(string[] fields)
 		{
-			if (fields == null) return true;
+            if (fields == null || fields.Length == 0) return true;
 			int tmp;
 
 			for (int i = 0; i < fields.Length; i++)
 			{
 				string f = fields[i];
 
-				//manages syntax >yyyy <yyyy to filter by year
+				// manages syntax >yyyy <yyyy to filter by year
 				bool greater = f.StartsWith(">");
 				if ((greater || f.StartsWith("<")) && int.TryParse(f.Substring(1), out tmp))
 				{
@@ -67,6 +68,15 @@ namespace Calder1
 					}
 
 				}
+
+                if (f.StartsWith("-"))
+                {
+                    f = f.Substring(1);
+                    if (URL.ToLower().Contains(f) || Title.ToLower().Contains(f) || Labels.ToLower().Contains(f))
+                        return false;
+
+                    continue;
+                }
 
 				if (URL.ToLower().Contains(f) || Title.ToLower().Contains(f) || Labels.ToLower().Contains(f))
 					continue;
