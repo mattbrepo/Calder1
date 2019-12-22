@@ -257,7 +257,7 @@ namespace Calder1
 		{
 			listViewLabels.Items.Clear();
 
-			string[] filterLabels = txtLabelFilter.Text.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries);
+            string[] filterLabels = txtLabelFilter.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			for (int i = 0; i < _labels.Count; i++)
 			{
@@ -273,7 +273,7 @@ namespace Calder1
 				{
 					for (int j = 0; j < filterLabels.Length; j++)
 					{
-						if (_labels[i].Text.Contains(filterLabels[j]) && (!chkOnlySelectedLabel.Checked || _labels[i].Checked))
+						if (_labels[i].Text.ToLower().Contains(filterLabels[j]) && (!chkOnlySelectedLabel.Checked || _labels[i].Checked))
 						{
 							listViewLabels.Items.Add(_labels[i]);
 							break;
