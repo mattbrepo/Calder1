@@ -37,10 +37,10 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbOpenRepository = new System.Windows.Forms.ToolStripButton();
             this.tscSearch = new System.Windows.Forms.ToolStripComboBox();
+            this.tsbSearch = new System.Windows.Forms.ToolStripButton();
             this.tsbFavorite = new System.Windows.Forms.ToolStripButton();
             this.tscRepo = new System.Windows.Forms.ToolStripComboBox();
             this.tsbAdd = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
@@ -56,9 +56,9 @@
             this.statusLabel,
             this.ssInfoSelected,
             this.ssInfoRecord});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 479);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(867, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(904, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -85,13 +85,13 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbOpenRepository,
             this.tscSearch,
+            this.tsbSearch,
             this.tsbFavorite,
             this.tscRepo,
-            this.tsbAdd,
-            this.toolStripButton1});
+            this.tsbAdd});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(867, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(904, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -116,6 +116,17 @@
             this.tscSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tscSearch_KeyPress);
             this.tscSearch.TextChanged += new System.EventHandler(this.tscSearch_TextChanged);
             // 
+            // tsbSearch
+            // 
+            this.tsbSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbSearch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbSearch.Image = ((System.Drawing.Image)(resources.GetObject("tsbSearch.Image")));
+            this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbSearch.Name = "tsbSearch";
+            this.tsbSearch.Size = new System.Drawing.Size(23, 22);
+            this.tsbSearch.Text = "Search";
+            this.tsbSearch.Click += new System.EventHandler(this.tsbSearch_Click);
+            // 
             // tsbFavorite
             // 
             this.tsbFavorite.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
@@ -133,7 +144,7 @@
             // 
             this.tscRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.tscRepo.Name = "tscRepo";
-            this.tscRepo.Size = new System.Drawing.Size(350, 25);
+            this.tscRepo.Size = new System.Drawing.Size(400, 25);
             this.tscRepo.ToolTipText = "Repositories (F4)";
             this.tscRepo.SelectedIndexChanged += new System.EventHandler(this.tscRepo_SelectedIndexChanged);
             // 
@@ -148,17 +159,6 @@
             this.tsbAdd.Text = "Add";
             this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton1.Text = "toolStripButton1";
-            this.toolStripButton1.Visible = false;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.gridView);
@@ -166,7 +166,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 25);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.panel1.Size = new System.Drawing.Size(867, 454);
+            this.panel1.Size = new System.Drawing.Size(904, 465);
             this.panel1.TabIndex = 2;
             // 
             // gridView
@@ -182,7 +182,7 @@
             this.gridView.MultiSelect = false;
             this.gridView.Name = "gridView";
             this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridView.Size = new System.Drawing.Size(857, 454);
+            this.gridView.Size = new System.Drawing.Size(894, 465);
             this.gridView.TabIndex = 0;
             this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellDoubleClick);
             this.gridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_RowEnter);
@@ -203,7 +203,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(867, 501);
+            this.ClientSize = new System.Drawing.Size(904, 512);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
@@ -236,7 +236,7 @@
 		private System.Windows.Forms.DataGridView gridView;
 		private System.Windows.Forms.ToolStripStatusLabel statusLabel;
 		private System.Windows.Forms.ToolStripButton tsbAdd;
-		private System.Windows.Forms.ToolStripButton toolStripButton1;
+		private System.Windows.Forms.ToolStripButton tsbSearch;
 		private System.Windows.Forms.ToolStripButton tsbFavorite;
         private System.Windows.Forms.ToolStripStatusLabel ssInfoRecord;
 		private System.Windows.Forms.ToolStripComboBox tscRepo;

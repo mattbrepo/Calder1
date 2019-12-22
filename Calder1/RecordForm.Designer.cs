@@ -33,6 +33,8 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.cmdOk = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.txtDate = new System.Windows.Forms.TextBox();
+            this.lblDate = new System.Windows.Forms.Label();
             this.lblAuthor = new System.Windows.Forms.Label();
             this.cmbAuthor = new System.Windows.Forms.ComboBox();
             this.lblLanguage = new System.Windows.Forms.Label();
@@ -54,8 +56,6 @@
             this.chkOnlySelectedLabel = new System.Windows.Forms.CheckBox();
             this.txtLabelFilter = new System.Windows.Forms.TextBox();
             this.lblLabelFilter = new System.Windows.Forms.Label();
-            this.lblDate = new System.Windows.Forms.Label();
-            this.txtDate = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -123,6 +123,22 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(652, 31);
             this.panel3.TabIndex = 8;
+            // 
+            // txtDate
+            // 
+            this.txtDate.Location = new System.Drawing.Point(556, 5);
+            this.txtDate.Name = "txtDate";
+            this.txtDate.Size = new System.Drawing.Size(93, 20);
+            this.txtDate.TabIndex = 13;
+            // 
+            // lblDate
+            // 
+            this.lblDate.AutoSize = true;
+            this.lblDate.Location = new System.Drawing.Point(520, 8);
+            this.lblDate.Name = "lblDate";
+            this.lblDate.Size = new System.Drawing.Size(30, 13);
+            this.lblDate.TabIndex = 12;
+            this.lblDate.Text = "Date";
             // 
             // lblAuthor
             // 
@@ -328,29 +344,15 @@
             this.lblLabelFilter.TabIndex = 2;
             this.lblLabelFilter.Text = "Filter";
             // 
-            // lblDate
-            // 
-            this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(520, 8);
-            this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(30, 13);
-            this.lblDate.TabIndex = 12;
-            this.lblDate.Text = "Date";
-            // 
-            // txtDate
-            // 
-            this.txtDate.Location = new System.Drawing.Point(556, 5);
-            this.txtDate.Name = "txtDate";
-            this.txtDate.Size = new System.Drawing.Size(93, 20);
-            this.txtDate.TabIndex = 13;
-            // 
             // RecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(658, 479);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "RecordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;

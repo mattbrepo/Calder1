@@ -44,6 +44,7 @@ namespace Calder1
 		private Calder1Repository _repo = null;
 		
 		private RecordForm _recForm = new RecordForm();
+        private SearchForm _searchForm = new SearchForm();
         private Calder1Record _recordRightClick;
         private bool _openingRepo;
 		private object _state = new object();
@@ -491,6 +492,13 @@ namespace Calder1
 
 		}
 
+        private void tsbSearch_Click(object sender, EventArgs e)
+        {
+            DialogResult dr = _searchForm.ShowDialog();
+            if (dr != System.Windows.Forms.DialogResult.OK) return;
+            //%%%UpdateUI(string searchText, bool favorite)
+        }
+
 		#endregion
 
 		#region func
@@ -733,6 +741,7 @@ namespace Calder1
         }
 
 		#endregion
+
 
 	}
 }
