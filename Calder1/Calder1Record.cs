@@ -39,7 +39,7 @@ namespace Calder1
 		/// <param name="fields">if it starts with a minor/major char is treated as a year, if it starts with a minus remove the records containing the following word</param>
         /// <param name="absents">fields that needs to be absent</param>
 		/// <returns></returns>
-        internal bool Contains(string[] fields)
+        internal bool Contains(string[] fields, bool alsoDate, bool alsoNegative, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
 		{
             if (fields == null || fields.Length == 0) return true;
 			int tmp;
@@ -48,37 +48,43 @@ namespace Calder1
 			{
 				string f = fields[i];
 
-				// manages syntax >yyyy <yyyy to filter by year
-				bool greater = f.StartsWith(">");
-				if ((greater || f.StartsWith("<")) && int.TryParse(f.Substring(1), out tmp))
-				{
-					if (f.Length == 5) //>yyyy
-					{
-						DateTime d2 = DateTime.Parse(Date);
-						if (greater)
-						{
-							DateTime d = DateTime.Parse("31/12/" + f.Substring(1));
-							if (d < d2) continue;
-						}
-						else
-						{
-							DateTime d = DateTime.Parse("01/01/" + f.Substring(1));
-							if (d > d2) continue;
-						}
-					}
-
-				}
-
-                if (f.StartsWith("-"))
+                if (alsoDate)
                 {
-                    f = f.Substring(1);
-                    if (URL.ToLower().Contains(f) || Title.ToLower().Contains(f) || Labels.ToLower().Contains(f))
-                        return false;
+                    // manages syntax >yyyy <yyyy to filter by year
+                    bool greater = f.StartsWith(">");
+                    if ((greater || f.StartsWith("<")) && int.TryParse(f.Substring(1), out tmp))
+                    {
+                        if (f.Length == 5) //>yyyy
+                        {
+                            DateTime d2 = DateTime.Parse(Date);
+                            if (greater)
+                            {
+                                DateTime d = DateTime.Parse("31/12/" + f.Substring(1));
+                                if (d < d2) continue;
+                            }
+                            else
+                            {
+                                DateTime d = DateTime.Parse("01/01/" + f.Substring(1));
+                                if (d > d2) continue;
+                            }
+                        }
 
-                    continue;
+                    }
                 }
 
-				if (URL.ToLower().Contains(f) || Title.ToLower().Contains(f) || Labels.ToLower().Contains(f))
+                if (alsoNegative)
+                {
+                    if (f.StartsWith("-"))
+                    {
+                        f = f.Substring(1);
+                        if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels))
+                            return false;
+
+                        continue;
+                    }
+                }
+
+                if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels))
 					continue;
 
 				return false;
@@ -86,6 +92,40 @@ namespace Calder1
 
 			return true;
 		}
+
+        private bool ContainsRaw(string field, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
+        {
+            if (!matchCase)
+            {
+                if (alsoURL)
+                    if (URL.ToLower().Contains(field))
+                        return true;
+
+                if (alsoTitle)
+                    if (Title.ToLower().Contains(field))
+                        return true;
+
+                if (alsoLabels)
+                    if (Labels.ToLower().Contains(field))
+                        return true;
+
+                return false;
+            }
+
+            if (alsoURL)
+                if (URL.Contains(field))
+                    return true;
+
+            if (alsoTitle)
+                if (Title.Contains(field))
+                    return true;
+
+            if (alsoLabels)
+                if (Labels.Contains(field))
+                    return true;
+
+            return false;
+        }
 
 		internal bool IsFavorite()
 		{

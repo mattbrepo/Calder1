@@ -495,8 +495,24 @@ namespace Calder1
         private void tsbSearch_Click(object sender, EventArgs e)
         {
             DialogResult dr = _searchForm.ShowDialog();
-            if (dr != System.Windows.Forms.DialogResult.OK) return;
-            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite()); //%%% to expand, need to decide how to reset the filter...
+            tscSearch.Text = "";
+            if (dr != System.Windows.Forms.DialogResult.OK)
+            {
+                tsbSearch.Checked = false;
+                tscSearch.Enabled = true;
+                tsbFavorite.Enabled = true;
+                tsbAdd.Enabled = true;
+                tscRepo.Enabled = true; 
+                UpdateUI();
+                return;
+            }
+            tsbSearch.Checked = true;
+            tscSearch.Enabled = false;
+            tsbFavorite.Enabled = false;
+            tsbAdd.Enabled = false;
+            tscRepo.Enabled = false;
+
+            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels());
         }
 
 		#endregion
@@ -663,14 +679,18 @@ namespace Calder1
 				tscRepo.Items.Add(repoFilePath);
 			tscRepo.Text = repoFilePath;
 			Text = APP_NAME + " " + APP_VERSION + " - " + _repo.CSVFilePath;
-
-			UpdateUI(null, tsbFavorite.Checked);
+            
+            //MTB [26/12/2019]:
+            //UpdateUI(null, tsbFavorite.Checked, false);
+            tscSearch.Text = "";
+            UpdateUI();
+            
             _openingRepo = false;
 		}
 
 		private bool UpdateUI()
 		{
-			return UpdateUI(tscSearch.Text, tsbFavorite.Checked);
+			return UpdateUI(tscSearch.Text, tsbFavorite.Checked, false, true, true, true);
 		}
 
 		/// <summary>
@@ -678,14 +698,17 @@ namespace Calder1
 		/// </summary>
 		/// <param name="searchText"></param>
 		/// <returns></returns>
-		private bool UpdateUI(string searchText, bool favorite)
+        private bool UpdateUI(string searchText, bool favorite, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
 		{
 			if (_repo == null) return false;
 
 			string[] fields = null;
 			if (!string.IsNullOrEmpty(searchText) && !string.IsNullOrWhiteSpace(searchText))
 			{
-				fields = searchText.Trim().ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                searchText = searchText.Trim();
+                if (!matchCase)
+                    searchText = searchText.ToLower();
+                fields = searchText.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 			}
 
 			DataTable table = new DataTable();
@@ -701,7 +724,7 @@ namespace Calder1
             for (int i = 0; i < _repo.Content.Count; i++)
             {
                 Calder1Record item = _repo.Content[i];
-                if (item.Contains(fields) && (!favorite || item.IsFavorite()))
+                if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels) && (!favorite || item.IsFavorite()))
 				{
 					res = true;
 					table.Rows.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });

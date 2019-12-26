@@ -24,15 +24,34 @@ namespace Calder1
             }
         }
 
-        public string GetSearchText()
+        internal string GetSearchText()
         {
             return txtSearch.Text;
         }
 
-        public bool HasFavorite()
+        internal bool HasFavorite()
         {
             return chkFavorite.Checked;
         }
 
+        internal bool HasMatchCase()
+        {
+            return chkMatchCase.Checked;
+        }
+
+        internal bool HasURL()
+        {
+            return chkURL.Checked;
+        }
+
+        internal bool HasTitle()
+        {
+            return chkTitle.Checked;
+        }
+
+        internal bool HasLabels()
+        {
+            return chkLabel.Checked;
+        }
     }
 }

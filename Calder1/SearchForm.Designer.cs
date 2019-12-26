@@ -36,6 +36,7 @@
             this.chkURL = new System.Windows.Forms.CheckBox();
             this.chkMatchCase = new System.Windows.Forms.CheckBox();
             this.chkFavorite = new System.Windows.Forms.CheckBox();
+            this.cmdReset = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // chkLabel
@@ -112,11 +113,22 @@
             this.chkFavorite.Text = "Favorite";
             this.chkFavorite.UseVisualStyleBackColor = true;
             // 
+            // cmdReset
+            // 
+            this.cmdReset.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.cmdReset.Location = new System.Drawing.Point(392, 39);
+            this.cmdReset.Name = "cmdReset";
+            this.cmdReset.Size = new System.Drawing.Size(75, 23);
+            this.cmdReset.TabIndex = 16;
+            this.cmdReset.Text = "Reset";
+            this.cmdReset.UseVisualStyleBackColor = true;
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(479, 89);
+            this.Controls.Add(this.cmdReset);
             this.Controls.Add(this.chkFavorite);
             this.Controls.Add(this.chkMatchCase);
             this.Controls.Add(this.chkURL);
@@ -144,5 +156,6 @@
         private System.Windows.Forms.CheckBox chkURL;
         private System.Windows.Forms.CheckBox chkMatchCase;
         private System.Windows.Forms.CheckBox chkFavorite;
+        private System.Windows.Forms.Button cmdReset;
     }
 }
