@@ -512,7 +512,7 @@ namespace Calder1
             tsbAdd.Enabled = false;
             tscRepo.Enabled = false;
 
-            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels());
+            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels(), _searchForm.HasKeywords());
         }
 
 		#endregion
@@ -690,7 +690,7 @@ namespace Calder1
 
 		private bool UpdateUI()
 		{
-			return UpdateUI(tscSearch.Text, tsbFavorite.Checked, false, true, true, true);
+			return UpdateUI(tscSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
 		}
 
 		/// <summary>
@@ -698,7 +698,7 @@ namespace Calder1
 		/// </summary>
 		/// <param name="searchText"></param>
 		/// <returns></returns>
-        private bool UpdateUI(string searchText, bool favorite, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
+        private bool UpdateUI(string searchText, bool favorite, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels, bool alsoKeywords)
 		{
 			if (_repo == null) return false;
 
@@ -724,7 +724,7 @@ namespace Calder1
             for (int i = 0; i < _repo.Content.Count; i++)
             {
                 Calder1Record item = _repo.Content[i];
-                if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels) && (!favorite || item.IsFavorite()))
+                if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
 				{
 					res = true;
 					table.Rows.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });

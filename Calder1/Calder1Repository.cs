@@ -14,6 +14,7 @@ namespace Calder1
 	{
 		#region const
 		//--- repository file constant
+        public const string KW_NEW_LINE = "+NL+";
 		public const char CSV_SEP = ';';
 		private const string HEADER = "kind;url;title;date_start;author;lang;labels;keywords;favorite";
 		public const string FAVORITE = "*";
@@ -81,7 +82,7 @@ namespace Calder1
 		{
 			try
 			{
-				List<string> lines = Content.Select(item => CreateCSVLine(item)).ToList<string>();
+				List<string> lines = this.Content.Select(item => CreateCSVLine(item)).ToList<string>();
 				lines.Insert(0, HEADER);
 				File.WriteAllLines(_csvFilePath, lines, _itaEncoding);
 				return true;

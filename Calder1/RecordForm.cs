@@ -71,11 +71,12 @@ namespace Calder1
 				_labels[index].Checked = true;
 			}
 
-			chkFavorite.Checked = (record.Favorite == Calder1Repository.FAVORITE);
+            chkFavorite.Checked = (record.Favorite == Calder1Repository.FAVORITE);
 			cmbLanguage.Text = record.Language;
 			cmbAuthor.Text = record.Author;
 			txtTitle.Text = record.Title;
 			txtLabelFilter.Text = "";
+            txtKeyWords.Text = record.Keywords.Replace(Calder1Repository.KW_NEW_LINE, "\r\n"); // convert newlines
 		}
 
 		/// <summary>
@@ -131,6 +132,7 @@ namespace Calder1
 			}
 
 			res.Title = txtTitle.Text.Trim();
+            res.Keywords = txtKeyWords.Text.Trim().Replace("\r\n", Calder1Repository.KW_NEW_LINE); // convert it back
             res.Date = txtDate.Text;
 			res.Author = cmbAuthor.Text;
 			res.Language = cmbLanguage.Text;
@@ -143,7 +145,6 @@ namespace Calder1
 			}
 			res.Labels = res.Labels.Trim();
 
-			res.Keywords = "";
 			res.Favorite = chkFavorite.Checked ? Calder1Repository.FAVORITE : "";
 			return res;
 		}

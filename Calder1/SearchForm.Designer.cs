@@ -37,6 +37,7 @@
             this.chkMatchCase = new System.Windows.Forms.CheckBox();
             this.chkFavorite = new System.Windows.Forms.CheckBox();
             this.cmdReset = new System.Windows.Forms.Button();
+            this.chkKeywords = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // chkLabel
@@ -74,7 +75,7 @@
             this.chkTitle.AutoSize = true;
             this.chkTitle.Checked = true;
             this.chkTitle.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkTitle.Location = new System.Drawing.Point(132, 38);
+            this.chkTitle.Location = new System.Drawing.Point(91, 38);
             this.chkTitle.Name = "chkTitle";
             this.chkTitle.Size = new System.Drawing.Size(46, 17);
             this.chkTitle.TabIndex = 12;
@@ -86,7 +87,7 @@
             this.chkURL.AutoSize = true;
             this.chkURL.Checked = true;
             this.chkURL.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkURL.Location = new System.Drawing.Point(244, 38);
+            this.chkURL.Location = new System.Drawing.Point(164, 38);
             this.chkURL.Name = "chkURL";
             this.chkURL.Size = new System.Drawing.Size(69, 17);
             this.chkURL.TabIndex = 13;
@@ -96,7 +97,7 @@
             // chkMatchCase
             // 
             this.chkMatchCase.AutoSize = true;
-            this.chkMatchCase.Location = new System.Drawing.Point(132, 60);
+            this.chkMatchCase.Location = new System.Drawing.Point(12, 86);
             this.chkMatchCase.Name = "chkMatchCase";
             this.chkMatchCase.Size = new System.Drawing.Size(82, 17);
             this.chkMatchCase.TabIndex = 14;
@@ -123,11 +124,24 @@
             this.cmdReset.Text = "Reset";
             this.cmdReset.UseVisualStyleBackColor = true;
             // 
+            // chkKeywords
+            // 
+            this.chkKeywords.AutoSize = true;
+            this.chkKeywords.Checked = true;
+            this.chkKeywords.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkKeywords.Location = new System.Drawing.Point(257, 38);
+            this.chkKeywords.Name = "chkKeywords";
+            this.chkKeywords.Size = new System.Drawing.Size(72, 17);
+            this.chkKeywords.TabIndex = 17;
+            this.chkKeywords.Text = "Keywords";
+            this.chkKeywords.UseVisualStyleBackColor = true;
+            // 
             // SearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 89);
+            this.ClientSize = new System.Drawing.Size(479, 115);
+            this.Controls.Add(this.chkKeywords);
             this.Controls.Add(this.cmdReset);
             this.Controls.Add(this.chkFavorite);
             this.Controls.Add(this.chkMatchCase);
@@ -157,5 +171,6 @@
         private System.Windows.Forms.CheckBox chkMatchCase;
         private System.Windows.Forms.CheckBox chkFavorite;
         private System.Windows.Forms.Button cmdReset;
+        private System.Windows.Forms.CheckBox chkKeywords;
     }
 }

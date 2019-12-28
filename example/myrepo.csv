@@ -1,6 +1,6 @@
 kind;url;title;date_start;author;lang;labels;keywords;favorite
-doc;a.txt;titolo a;01/12/2017;myuser;it;lab1 lab2;varie;*
-doc;f.txt;titolo f;01/12/2017;myuser;it;lab1 lab2 lab3;varie;
+doc;a.txt;titolo a;01/12/2017;myuser;it;lab1 lab2;linea1 parola2+NL+linea2+NL++NL+   linea4;*
+doc;f.txt;titolo f;01/12/2017;myuser;it;lab1 lab2 lab3;;
 url;Google.com;;13/12/2017;myuser;en;;;
 url;google.com/dhsjh;;13/12/2017;myuser;en;;;
 url;htttp://goog;ciao;14/12/2017;myuser;en;lab1 lab3;;

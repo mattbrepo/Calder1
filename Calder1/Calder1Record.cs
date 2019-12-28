@@ -39,7 +39,7 @@ namespace Calder1
 		/// <param name="fields">if it starts with a minor/major char is treated as a year, if it starts with a minus remove the records containing the following word</param>
         /// <param name="absents">fields that needs to be absent</param>
 		/// <returns></returns>
-        internal bool Contains(string[] fields, bool alsoDate, bool alsoNegative, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
+        internal bool Contains(string[] fields, bool alsoDate, bool alsoNegative, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels, bool alsoKeywords)
 		{
             if (fields == null || fields.Length == 0) return true;
 			int tmp;
@@ -77,14 +77,14 @@ namespace Calder1
                     if (f.StartsWith("-"))
                     {
                         f = f.Substring(1);
-                        if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels))
+                        if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords))
                             return false;
 
                         continue;
                     }
                 }
 
-                if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels))
+                if (ContainsRaw(f, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords))
 					continue;
 
 				return false;
@@ -93,7 +93,7 @@ namespace Calder1
 			return true;
 		}
 
-        private bool ContainsRaw(string field, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels)
+        private bool ContainsRaw(string field, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels, bool alsoKeywords)
         {
             if (!matchCase)
             {
@@ -109,6 +109,10 @@ namespace Calder1
                     if (Labels.ToLower().Contains(field))
                         return true;
 
+                if (alsoKeywords)
+                    if (Keywords.ToLower().Contains(field))
+                        return true;
+
                 return false;
             }
 
@@ -122,6 +126,10 @@ namespace Calder1
 
             if (alsoLabels)
                 if (Labels.Contains(field))
+                    return true;
+
+            if (alsoKeywords)
+                if (Keywords.Contains(field))
                     return true;
 
             return false;

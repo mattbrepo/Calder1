@@ -53,5 +53,10 @@ namespace Calder1
         {
             return chkLabel.Checked;
         }
+
+        internal bool HasKeywords()
+        {
+            return chkKeywords.Checked;
+        }
     }
 }
