@@ -30,7 +30,6 @@
 		{
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RecordForm));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.cmdOk = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtDate = new System.Windows.Forms.TextBox();
             this.lblDate = new System.Windows.Forms.Label();
@@ -55,11 +54,13 @@
             this.chkOnlySelectedLabel = new System.Windows.Forms.CheckBox();
             this.txtLabelFilter = new System.Windows.Forms.TextBox();
             this.lblLabelFilter = new System.Windows.Forms.Label();
+            this.cmdOk = new System.Windows.Forms.Button();
             this.panelKeyWords = new System.Windows.Forms.Panel();
             this.txtKeyWords = new System.Windows.Forms.TextBox();
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmdSelectAll = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -94,16 +95,6 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 439);
             this.tableLayoutPanel1.TabIndex = 4;
-            // 
-            // cmdOk
-            // 
-            this.cmdOk.Location = new System.Drawing.Point(14, 5);
-            this.cmdOk.Name = "cmdOk";
-            this.cmdOk.Size = new System.Drawing.Size(75, 23);
-            this.cmdOk.TabIndex = 0;
-            this.cmdOk.Text = "Ok";
-            this.cmdOk.UseVisualStyleBackColor = true;
-            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
             // 
             // panel3
             // 
@@ -292,6 +283,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.cmdSelectAll);
             this.panel7.Controls.Add(this.cmdAddLabel);
             this.panel7.Controls.Add(this.chkOnlySelectedLabel);
             this.panel7.Controls.Add(this.txtLabelFilter);
@@ -340,6 +332,16 @@
             this.lblLabelFilter.TabIndex = 2;
             this.lblLabelFilter.Text = "Filter";
             // 
+            // cmdOk
+            // 
+            this.cmdOk.Location = new System.Drawing.Point(14, 5);
+            this.cmdOk.Name = "cmdOk";
+            this.cmdOk.Size = new System.Drawing.Size(75, 23);
+            this.cmdOk.TabIndex = 0;
+            this.cmdOk.Text = "Ok";
+            this.cmdOk.UseVisualStyleBackColor = true;
+            this.cmdOk.Click += new System.EventHandler(this.cmdOk_Click);
+            // 
             // panelKeyWords
             // 
             this.panelKeyWords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -387,6 +389,16 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
+            // 
+            // cmdSelectAll
+            // 
+            this.cmdSelectAll.Location = new System.Drawing.Point(487, 2);
+            this.cmdSelectAll.Name = "cmdSelectAll";
+            this.cmdSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.cmdSelectAll.TabIndex = 11;
+            this.cmdSelectAll.Text = "Select all";
+            this.cmdSelectAll.UseVisualStyleBackColor = true;
+            this.cmdSelectAll.Click += new System.EventHandler(this.cmdSelectAll_Click);
             // 
             // RecordForm
             // 
@@ -456,6 +468,7 @@
         private System.Windows.Forms.Panel panelKWLabel;
         private System.Windows.Forms.Label lblKeywords;
         private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button cmdSelectAll;
 
 
 	}

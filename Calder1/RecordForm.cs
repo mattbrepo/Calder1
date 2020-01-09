@@ -251,6 +251,12 @@ namespace Calder1
 			UpdateUI();
 		}
 
+        private void cmdSelectAll_Click(object sender, EventArgs e)
+        {
+            foreach (ListViewItem item in listViewLabels.Items)
+                item.Checked = true;
+        }
+
 		#endregion
 
 		#region private function
@@ -285,5 +291,6 @@ namespace Calder1
 		}
 		
 		#endregion
+
 	}
 }
