@@ -598,12 +598,21 @@ namespace Calder1
 
 			_repo.Content.Add(r);
 
-			tscSearch.Text = "";
+            string prevSearch = tscSearch.Text;
+            bool prevFavorite = tsbFavorite.Checked;
+
+            // reset search & favorite
+            tscSearch.Text = "";
 			tsbFavorite.Checked = false;
+
 			UpdateUI();
 			SelectRecordUI(_repo.Content.Count - 1);
-			//MessageBox.Show("Document added", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
-		}
+
+            // restore search & favorite
+            if (prevFavorite)
+                tsbFavorite.Checked = true;
+            tscSearch.Text = prevSearch; // restore previous search
+        }
 
 		/// <summary>
 		/// Edit a record with the UI
