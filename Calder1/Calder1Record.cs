@@ -68,7 +68,11 @@ namespace Calder1
                                 if (d > d2) continue;
                             }
                         }
-
+                    }
+                    else
+                    {
+                        if (Date.Contains(f))
+                            continue;
                     }
                 }
 
