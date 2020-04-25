@@ -575,7 +575,6 @@ namespace Calder1
             if (dr != System.Windows.Forms.DialogResult.OK) return;
 
             Calder1Record r = _recForm.GetRecord();
-			_recForm.ClearUI();
 
 			//checks if it's valid
 			if (string.IsNullOrEmpty(r.Title) || string.IsNullOrWhiteSpace(r.Title) || string.IsNullOrEmpty(r.URL) || string.IsNullOrWhiteSpace(r.URL))

@@ -50,9 +50,10 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.listViewLabels = new System.Windows.Forms.ListView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.cmdSelectAll = new System.Windows.Forms.Button();
             this.cmdAddLabel = new System.Windows.Forms.Button();
             this.chkOnlySelectedLabel = new System.Windows.Forms.CheckBox();
-            this.txtLabelFilter = new System.Windows.Forms.TextBox();
+            this.txtFilter = new System.Windows.Forms.TextBox();
             this.lblLabelFilter = new System.Windows.Forms.Label();
             this.cmdOk = new System.Windows.Forms.Button();
             this.panelKeyWords = new System.Windows.Forms.Panel();
@@ -60,7 +61,6 @@
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmdSelectAll = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -286,13 +286,23 @@
             this.panel7.Controls.Add(this.cmdSelectAll);
             this.panel7.Controls.Add(this.cmdAddLabel);
             this.panel7.Controls.Add(this.chkOnlySelectedLabel);
-            this.panel7.Controls.Add(this.txtLabelFilter);
+            this.panel7.Controls.Add(this.txtFilter);
             this.panel7.Controls.Add(this.lblLabelFilter);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(658, 31);
             this.panel7.TabIndex = 12;
+            // 
+            // cmdSelectAll
+            // 
+            this.cmdSelectAll.Location = new System.Drawing.Point(487, 2);
+            this.cmdSelectAll.Name = "cmdSelectAll";
+            this.cmdSelectAll.Size = new System.Drawing.Size(75, 23);
+            this.cmdSelectAll.TabIndex = 11;
+            this.cmdSelectAll.Text = "Select all";
+            this.cmdSelectAll.UseVisualStyleBackColor = true;
+            this.cmdSelectAll.Click += new System.EventHandler(this.cmdSelectAll_Click);
             // 
             // cmdAddLabel
             // 
@@ -315,13 +325,13 @@
             this.chkOnlySelectedLabel.UseVisualStyleBackColor = true;
             this.chkOnlySelectedLabel.CheckedChanged += new System.EventHandler(this.chkOnlySelectedLabel_CheckedChanged);
             // 
-            // txtLabelFilter
+            // txtFilter
             // 
-            this.txtLabelFilter.Location = new System.Drawing.Point(47, 5);
-            this.txtLabelFilter.Name = "txtLabelFilter";
-            this.txtLabelFilter.Size = new System.Drawing.Size(131, 20);
-            this.txtLabelFilter.TabIndex = 3;
-            this.txtLabelFilter.TextChanged += new System.EventHandler(this.txtLabelFilter_TextChanged);
+            this.txtFilter.Location = new System.Drawing.Point(47, 5);
+            this.txtFilter.Name = "txtFilter";
+            this.txtFilter.Size = new System.Drawing.Size(131, 20);
+            this.txtFilter.TabIndex = 3;
+            this.txtFilter.TextChanged += new System.EventHandler(this.txtLabelFilter_TextChanged);
             // 
             // lblLabelFilter
             // 
@@ -390,16 +400,6 @@
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
             // 
-            // cmdSelectAll
-            // 
-            this.cmdSelectAll.Location = new System.Drawing.Point(487, 2);
-            this.cmdSelectAll.Name = "cmdSelectAll";
-            this.cmdSelectAll.Size = new System.Drawing.Size(75, 23);
-            this.cmdSelectAll.TabIndex = 11;
-            this.cmdSelectAll.Text = "Select all";
-            this.cmdSelectAll.UseVisualStyleBackColor = true;
-            this.cmdSelectAll.Click += new System.EventHandler(this.cmdSelectAll_Click);
-            // 
             // RecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -454,7 +454,7 @@
 		private System.Windows.Forms.Label lblTitle;
 		private System.Windows.Forms.Panel panel6;
 		private System.Windows.Forms.Panel panel7;
-		private System.Windows.Forms.TextBox txtLabelFilter;
+		private System.Windows.Forms.TextBox txtFilter;
 		private System.Windows.Forms.Label lblLabelFilter;
 		private System.Windows.Forms.ListView listViewLabels;
 		private System.Windows.Forms.CheckBox chkOnlySelectedLabel;

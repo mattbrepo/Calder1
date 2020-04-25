@@ -27,17 +27,16 @@ namespace Calder1
 		#region public function
 		internal void SetRepository(Calder1Repository repo, Calder1Record record)
 		{
-			_repo = repo;
+            _repo = repo;
 
-			cmbLanguage.Items.Clear();
-			cmbLanguage.Items.AddRange(_repo.Content.Select(x => x.Language).Where(x => x != "").Distinct().ToArray<string>());
+            ClearUI();
 
-			cmbAuthor.Items.Clear();
+            cmbLanguage.Items.AddRange(_repo.Content.Select(x => x.Language).Where(x => x != "").Distinct().ToArray<string>());
 			cmbAuthor.Items.AddRange(_repo.Content.Select(x => x.Author).Where(x => x != "").Distinct().ToArray<string>());
 
 			string[] labels = _repo.Content.SelectMany(x => x.Labels.Split(' ')).Distinct().Where(x => !string.IsNullOrEmpty(x)).OrderBy(x => x).ToArray();
 			_labels = labels.Select(x => new ListViewItem(x)).ToList();
-			listViewLabels.Clear();
+			
 			listViewLabels.Items.AddRange(_labels.ToArray());
 
 			this.Text = "";
@@ -75,7 +74,7 @@ namespace Calder1
 			cmbLanguage.Text = record.Language;
 			cmbAuthor.Text = record.Author;
 			txtTitle.Text = record.Title;
-			txtLabelFilter.Text = "";
+			txtFilter.Text = "";
             txtKeyWords.Text = record.Keywords.Replace(Calder1Repository.KW_NEW_LINE, "\r\n"); // convert newlines
 		}
 
@@ -149,13 +148,19 @@ namespace Calder1
 			return res;
 		}
 
-		internal void ClearUI()
+		private void ClearUI()
 		{
-			chkOnlySelectedLabel.Checked = false;
+            cmbLanguage.Items.Clear();
+            cmbAuthor.Items.Clear();
+            listViewLabels.Clear();
+            chkOnlySelectedLabel.Checked = false;
 			chkFavorite.Checked = false;
 			this.Text = "";
 			txtTitle.Text = "";
-		}
+            txtFilter.Text = "";
+            txtKeyWords.Text = "";
+            txtDate.Text = "";
+        }
 
 		#endregion
 
@@ -264,7 +269,7 @@ namespace Calder1
 		{
 			listViewLabels.Items.Clear();
 
-            string[] filterLabels = txtLabelFilter.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            string[] filterLabels = txtFilter.Text.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
 			for (int i = 0; i < _labels.Count; i++)
 			{
