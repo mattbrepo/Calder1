@@ -174,7 +174,6 @@
             this.gridView.AllowDrop = true;
             this.gridView.AllowUserToAddRows = false;
             this.gridView.AllowUserToDeleteRows = false;
-            this.gridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.DisplayedCells;
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
@@ -186,6 +185,7 @@
             this.gridView.TabIndex = 0;
             this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellDoubleClick);
             this.gridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_RowEnter);
+            this.gridView.VisibleChanged += new System.EventHandler(this.gridView_VisibleChanged);
             this.gridView.DragDrop += new System.Windows.Forms.DragEventHandler(this.gridView_DragDrop);
             this.gridView.DragEnter += new System.Windows.Forms.DragEventHandler(this.gridView_DragEnter);
             this.gridView.KeyDown += new System.Windows.Forms.KeyEventHandler(this.gridView_KeyDown);

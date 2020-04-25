@@ -515,15 +515,21 @@ namespace Calder1
             UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels(), _searchForm.HasKeywords());
         }
 
-		#endregion
+        private void gridView_VisibleChanged(object sender, EventArgs e)
+        {
+            // remove auto size column
+            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+        }
 
-		#region func
+        #endregion
 
-		/// <summary>
-		/// Opens URL or file
-		/// </summary>
-		/// <param name="r"></param>
-		private void OpenURLFile(Calder1Record r)
+        #region func
+
+        /// <summary>
+        /// Opens URL or file
+        /// </summary>
+        /// <param name="r"></param>
+        private void OpenURLFile(Calder1Record r)
 		{
 			try
 			{
@@ -739,8 +745,10 @@ namespace Calder1
 				}
 			}
 
-			gridView.DataSource = table;
-			ssInfoSelected.Text = table.Rows.Count + "/" + _repo.Content.Count;
+            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            gridView.DataSource = table;
+
+            ssInfoSelected.Text = table.Rows.Count + "/" + _repo.Content.Count;
 			return res;
 		}
 
@@ -771,8 +779,8 @@ namespace Calder1
                 MessageBox.Show("Error on saving repository", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-		#endregion
 
+        #endregion
 
-	}
+    }
 }
