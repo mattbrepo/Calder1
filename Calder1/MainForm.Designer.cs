@@ -36,7 +36,6 @@
             this.ssInfoRecord = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbOpenRepository = new System.Windows.Forms.ToolStripButton();
-            this.tscSearch = new System.Windows.Forms.ToolStripComboBox();
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
             this.tsbFavorite = new System.Windows.Forms.ToolStripButton();
             this.tscRepo = new System.Windows.Forms.ToolStripComboBox();
@@ -44,6 +43,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tstSearch = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -84,7 +84,7 @@
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbOpenRepository,
-            this.tscSearch,
+            this.tstSearch,
             this.tsbSearch,
             this.tsbFavorite,
             this.tscRepo,
@@ -104,17 +104,6 @@
             this.tsbOpenRepository.Size = new System.Drawing.Size(23, 22);
             this.tsbOpenRepository.Text = "Open";
             this.tsbOpenRepository.Click += new System.EventHandler(this.tsbOpenRepository_Click);
-            // 
-            // tscSearch
-            // 
-            this.tscSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tscSearch.AutoSize = false;
-            this.tscSearch.Name = "tscSearch";
-            this.tscSearch.Size = new System.Drawing.Size(300, 23);
-            this.tscSearch.ToolTipText = "Search (CTRL+S)";
-            this.tscSearch.DropDownClosed += new System.EventHandler(this.tscSearch_DropDownClosed);
-            this.tscSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tscSearch_KeyPress);
-            this.tscSearch.TextChanged += new System.EventHandler(this.tscSearch_TextChanged);
             // 
             // tsbSearch
             // 
@@ -199,6 +188,14 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
+            // tstSearch
+            // 
+            this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstSearch.Name = "tstSearch";
+            this.tstSearch.Size = new System.Drawing.Size(300, 23);
+            this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
+            this.tstSearch.TextChanged += new System.EventHandler(this.tstSearch_TextChanged);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -230,7 +227,6 @@
 
 		private System.Windows.Forms.StatusStrip statusStrip1;
 		private System.Windows.Forms.ToolStrip toolStrip1;
-		private System.Windows.Forms.ToolStripComboBox tscSearch;
 		private System.Windows.Forms.ToolStripButton tsbOpenRepository;
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.DataGridView gridView;
@@ -242,6 +238,7 @@
 		private System.Windows.Forms.ToolStripComboBox tscRepo;
 		private System.Windows.Forms.ToolStripStatusLabel ssInfoSelected;
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
-	}
+        private System.Windows.Forms.ToolStripTextBox tstSearch;
+    }
 }
 

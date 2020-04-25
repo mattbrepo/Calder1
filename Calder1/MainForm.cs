@@ -180,35 +180,27 @@ namespace Calder1
 			AddRecord(files[0], true);
 		}
 
-		private void tscSearch_KeyPress(object sender, KeyPressEventArgs e)
-		{
-			if (_repo == null) return;
+        private void tstSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (_repo == null) return;
+            UpdateUI();
+        }
 
-			if (e.KeyChar == 13 && !tscSearch.Items.Contains(tscSearch.Text))
-				tscSearch.Items.Add(tscSearch.Text);
-
+        private void tstSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (_repo == null) return;
+            
             if (e.KeyChar == 13 && Control.ModifierKeys == Keys.Shift)
                 gridView.Focus();
-		}
+        }
 
-		private void tscSearch_TextChanged(object sender, EventArgs e)
-		{
-			if (_repo == null) return;
-			UpdateUI();
-		}
-
-		private void tscSearch_DropDownClosed(object sender, EventArgs e)
-		{
-			UpdateUI();
-		}
-
-		private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
 		{
 			if (_repo == null) return;
 			if (e.Shift || e.Alt) return;
 
 			if (e.Control && e.KeyCode == Keys.S)
-				tscSearch.Focus();
+				tstSearch.Focus();
 
 			if (e.Control && e.KeyCode == Keys.G)
 				gridView.Focus();
@@ -495,11 +487,11 @@ namespace Calder1
         private void tsbSearch_Click(object sender, EventArgs e)
         {
             DialogResult dr = _searchForm.ShowDialog();
-            tscSearch.Text = "";
+            tstSearch.Text = "";
             if (dr != System.Windows.Forms.DialogResult.OK)
             {
                 tsbSearch.Checked = false;
-                tscSearch.Enabled = true;
+                tstSearch.Enabled = true;
                 tsbFavorite.Enabled = true;
                 tsbAdd.Enabled = true;
                 tscRepo.Enabled = true; 
@@ -507,7 +499,7 @@ namespace Calder1
                 return;
             }
             tsbSearch.Checked = true;
-            tscSearch.Enabled = false;
+            tstSearch.Enabled = false;
             tsbFavorite.Enabled = false;
             tsbAdd.Enabled = false;
             tscRepo.Enabled = false;
@@ -604,11 +596,11 @@ namespace Calder1
 
 			_repo.Content.Add(r);
 
-            string prevSearch = tscSearch.Text;
+            string prevSearch = tstSearch.Text;
             bool prevFavorite = tsbFavorite.Checked;
 
             // reset search & favorite
-            tscSearch.Text = "";
+            tstSearch.Text = "";
 			tsbFavorite.Checked = false;
 
 			UpdateUI();
@@ -617,7 +609,7 @@ namespace Calder1
             // restore search & favorite
             if (prevFavorite)
                 tsbFavorite.Checked = true;
-            tscSearch.Text = prevSearch; // restore previous search
+            tstSearch.Text = prevSearch; // restore previous search
         }
 
 		/// <summary>
@@ -693,10 +685,10 @@ namespace Calder1
 				tscRepo.Items.Add(repoFilePath);
 			tscRepo.Text = repoFilePath;
 			Text = APP_NAME + " " + APP_VERSION + " - " + _repo.CSVFilePath;
-            
+
             //MTB [26/12/2019]:
             //UpdateUI(null, tsbFavorite.Checked, false);
-            tscSearch.Text = "";
+            tstSearch.Text = "";
             UpdateUI();
             
             _openingRepo = false;
@@ -704,7 +696,7 @@ namespace Calder1
 
 		private bool UpdateUI()
 		{
-			return UpdateUI(tscSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
+			return UpdateUI(tstSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
 		}
 
 		/// <summary>
@@ -781,6 +773,5 @@ namespace Calder1
 
 
         #endregion
-
     }
 }
