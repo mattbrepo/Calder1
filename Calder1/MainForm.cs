@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.2)";
+        private const string APP_VERSION = "(v0.4)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -603,7 +603,7 @@ namespace Calder1
 			tsbFavorite.Checked = false;
 			UpdateUI();
 			SelectRecordUI(_repo.Content.Count - 1);
-			MessageBox.Show("Document added", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
+			//MessageBox.Show("Document added", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Information);
 		}
 
 		/// <summary>
