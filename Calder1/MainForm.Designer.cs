@@ -36,6 +36,7 @@
             this.ssInfoRecord = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsbOpenRepository = new System.Windows.Forms.ToolStripButton();
+            this.tstSearch = new System.Windows.Forms.ToolStripTextBox();
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
             this.tsbFavorite = new System.Windows.Forms.ToolStripButton();
             this.tscRepo = new System.Windows.Forms.ToolStripComboBox();
@@ -43,7 +44,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tstSearch = new System.Windows.Forms.ToolStripTextBox();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,6 +104,14 @@
             this.tsbOpenRepository.Size = new System.Drawing.Size(23, 22);
             this.tsbOpenRepository.Text = "Open";
             this.tsbOpenRepository.Click += new System.EventHandler(this.tsbOpenRepository_Click);
+            // 
+            // tstSearch
+            // 
+            this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstSearch.Name = "tstSearch";
+            this.tstSearch.Size = new System.Drawing.Size(300, 25);
+            this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
+            this.tstSearch.TextChanged += new System.EventHandler(this.tstSearch_TextChanged);
             // 
             // tsbSearch
             // 
@@ -167,7 +175,6 @@
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.gridView.Location = new System.Drawing.Point(5, 0);
-            this.gridView.MultiSelect = false;
             this.gridView.Name = "gridView";
             this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridView.Size = new System.Drawing.Size(894, 465);
@@ -187,14 +194,6 @@
             this.notifyIcon1.Text = "Calder1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
-            // 
-            // tstSearch
-            // 
-            this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tstSearch.Name = "tstSearch";
-            this.tstSearch.Size = new System.Drawing.Size(300, 23);
-            this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
-            this.tstSearch.TextChanged += new System.EventHandler(this.tstSearch_TextChanged);
             // 
             // MainForm
             // 

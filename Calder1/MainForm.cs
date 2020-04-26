@@ -45,7 +45,6 @@ namespace Calder1
 		
 		private RecordForm _recForm = new RecordForm();
         private SearchForm _searchForm = new SearchForm();
-        private Calder1Record _recordRightClick;
         private bool _openingRepo;
 		private object _state = new object();
 		private NamedPipeServerStream _pipeServer;
@@ -350,28 +349,41 @@ namespace Calder1
             if (row < 0)
                 return;
 
-			gridView.Rows[row].Selected = true;
+            if (gridView.SelectedRows.Count < 1)
+                return;
 
-			int contentIndex = int.Parse(gridView.Rows[row].Cells[TAB_HEADER_INDEX].Value.ToString());
-            _recordRightClick = _repo.Content[contentIndex];
+            if (e.Button == MouseButtons.Left)
+            {
+                int contentIndex = int.Parse(gridView.Rows[row].Cells[TAB_HEADER_INDEX].Value.ToString());
+                ssInfoRecord.Text = _repo.Content[contentIndex].URL;
+                return;
+            }
 
-            ssInfoRecord.Text = _recordRightClick.URL;
             if (e.Button != MouseButtons.Right) return;
 
             ContextMenu m = new ContextMenu();
-			m.MenuItems.Add(MENU_EDIT_RECORD, RightClickMenu);
-			m.MenuItems.Add(MENU_DELETE_RECORD, RightClickMenu);
-			m.MenuItems.Add(MENU_COPY_TITLE, RightClickMenu); 
-			m.MenuItems.Add(MENU_COPY_LABELS, RightClickMenu);
-            m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
-			if (_recordRightClick.Kind == Calder1Repository.KIND_DOC)
-			{
-				m.MenuItems.Add("-");
-				m.MenuItems.Add(MENU_RENAME_FILE, RightClickMenu);
-				m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
-				m.MenuItems.Add(MENU_COPY_FILE_PATH, RightClickMenu);
-				m.MenuItems.Add(MENU_COPY_FILE_NAME, RightClickMenu);
-			}
+            if (gridView.SelectedRows.Count == 1)
+            {
+                int contentIndex = int.Parse(gridView.Rows[row].Cells[TAB_HEADER_INDEX].Value.ToString());
+                m.MenuItems.Add(MENU_EDIT_RECORD, RightClickMenu);
+                m.MenuItems.Add(MENU_DELETE_RECORD, RightClickMenu);
+                m.MenuItems.Add(MENU_COPY_TITLE, RightClickMenu);
+                m.MenuItems.Add(MENU_COPY_LABELS, RightClickMenu);
+                m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
+                if (_repo.Content[contentIndex].Kind == Calder1Repository.KIND_DOC)
+                {
+                    m.MenuItems.Add("-");
+                    m.MenuItems.Add(MENU_RENAME_FILE, RightClickMenu);
+                    m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
+                    m.MenuItems.Add(MENU_COPY_FILE_PATH, RightClickMenu);
+                    m.MenuItems.Add(MENU_COPY_FILE_NAME, RightClickMenu);
+                }
+            }
+            else
+            {
+                m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
+            }
+            
             m.Show(gridView, new Point(e.X, e.Y));
         }
 
@@ -382,26 +394,38 @@ namespace Calder1
 		/// <param name="e"></param>
         private void RightClickMenu(object sender, EventArgs e)
         {
+            // list of all selected rows
+            List<Calder1Record> records = new List<Calder1Record>();
+            for (int i = 0; i < gridView.SelectedRows.Count; i++)
+            {
+                int row = gridView.SelectedRows[i].Index;
+                int contentIndex = int.Parse(gridView.Rows[row].Cells[TAB_HEADER_INDEX].Value.ToString());
+                Calder1Record recordRC = _repo.Content[contentIndex];
+                records.Add(recordRC);
+            }
+            Calder1Record record1RightClick = records[0];
+
+            // actions
             string menu = ((MenuItem)sender).Text;
 			if (menu == MENU_EDIT_RECORD)
             {
-				EditRecord(_recordRightClick);
+				EditRecord(record1RightClick);
                 return;
             }
 
 			if (menu == MENU_DELETE_RECORD)
 			{
-				if (MessageBox.Show("Delete " + Path.GetFileName(_recordRightClick.URL) + "?", APP_NAME, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No) return;
-				_repo.Content.Remove(_recordRightClick);
-				if (_recordRightClick.Kind == Calder1Repository.KIND_DOC)
+				if (MessageBox.Show("Delete " + Path.GetFileName(record1RightClick.URL) + "?", APP_NAME, MessageBoxButtons.YesNo) == System.Windows.Forms.DialogResult.No) return;
+				_repo.Content.Remove(record1RightClick);
+				if (record1RightClick.Kind == Calder1Repository.KIND_DOC)
 				{
 					try
 					{
-						File.Delete(_repo.GetRecordPath(_recordRightClick));
+						File.Delete(_repo.GetRecordPath(record1RightClick));
 					}
 					catch (Exception ex)
 					{
-						MessageBox.Show("Error deleting " + _repo.GetRecordPath(_recordRightClick), APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
+						MessageBox.Show("Error deleting " + _repo.GetRecordPath(record1RightClick), APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
 						ex.ToString();
 					}
 				}
@@ -411,19 +435,19 @@ namespace Calder1
 
 			if (menu == MENU_COPY_TITLE)
 			{
-				Clipboard.SetText(_recordRightClick.Title);
+				Clipboard.SetText(record1RightClick.Title);
 				return;
 			}
 
 			if (menu == MENU_COPY_LABELS)
 			{
-				Clipboard.SetText(_recordRightClick.Labels);
+				Clipboard.SetText(record1RightClick.Labels);
 				return;
 			}
 
             if (menu == MENU_TOGGLE_FAV)
             {
-                _recordRightClick.InvertFavorite();
+                record1RightClick.InvertFavorite();
                 UpdateUI();
                 return;
             }
@@ -431,7 +455,7 @@ namespace Calder1
 			if (menu == MENU_RENAME_FILE)
 			{
 				InputForm rf = new InputForm();
-				string fileNameOld = Path.GetFileName(_recordRightClick.URL);
+				string fileNameOld = Path.GetFileName(record1RightClick.URL);
 				rf.SetInput("Rename: ", fileNameOld);
 				if (rf.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
 				string fileNameNew = rf.GetInputText();
@@ -444,22 +468,28 @@ namespace Calder1
 					MessageBox.Show("Error on rename: " + fileNameNew, APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					ex.ToString();
 				}
-				_recordRightClick.URL = fileNameNew;
+				record1RightClick.URL = fileNameNew;
 				return;
 			}
 
 			if (menu == MENU_EXPORT_FILE)
 			{
-				SaveFileDialog sfd = new SaveFileDialog();
-				sfd.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-				sfd.FileName = Path.GetFileName(_recordRightClick.URL);
+                FolderBrowserDialog sfd = new FolderBrowserDialog();
+				sfd.SelectedPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
 				if (sfd.ShowDialog() != System.Windows.Forms.DialogResult.OK)
 					return;
 
-				string filePathNew = sfd.FileName;
-				try
+                string filePathNew = "";
+                try
 				{
-					File.Copy(_repo.GetRecordPath(_recordRightClick), filePathNew);
+                    for (int i = 0; i < records.Count; i++)
+                    {
+                        if (records[i].Kind != Calder1Repository.KIND_DOC)
+                            continue;
+
+                        filePathNew = Path.Combine(sfd.SelectedPath, Path.GetFileName(records[i].URL));
+                        File.Copy(_repo.GetRecordPath(record1RightClick), filePathNew);
+                    }
 				}
 				catch (Exception ex)
 				{
@@ -472,13 +502,13 @@ namespace Calder1
 
 			if (menu == MENU_COPY_FILE_PATH)
 			{
-				Clipboard.SetText(_repo.GetRecordPath(_recordRightClick));
+				Clipboard.SetText(_repo.GetRecordPath(record1RightClick));
 				return;
 			}
 
 			if (menu == MENU_COPY_FILE_NAME)
 			{
-				Clipboard.SetText(Path.GetFileName(_recordRightClick.URL));
+				Clipboard.SetText(Path.GetFileName(record1RightClick.URL));
 				return;
 			}
 
