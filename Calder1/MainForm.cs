@@ -208,7 +208,7 @@ namespace Calder1
 			{
 				tsbFavorite.Checked = !tsbFavorite.Checked;
 				UpdateUI();
-			}
+            }
 
 			if (!e.Control && e.KeyCode == Keys.F4)
 			{
@@ -261,7 +261,7 @@ namespace Calder1
 		{
 			if (_repo == null) return;
 			UpdateUI();
-		}
+        }
 
 		private void gridView_RowEnter(object sender, DataGridViewCellEventArgs e)
 		{
@@ -430,7 +430,7 @@ namespace Calder1
 					}
 				}
 				UpdateUI();
-				return;
+                return;
 			}
 
 			if (menu == MENU_COPY_TITLE)
@@ -540,7 +540,7 @@ namespace Calder1
         private void gridView_VisibleChanged(object sender, EventArgs e)
         {
             // remove auto size column
-            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;
+            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // %colresize%
         }
 
         #endregion
@@ -769,6 +769,9 @@ namespace Calder1
 
             gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
             gridView.DataSource = table;
+
+            if (gridView.Visible)
+                gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // to allow column resize (%colresize%)
 
             ssInfoSelected.Text = table.Rows.Count + "/" + _repo.Content.Count;
 			return res;
