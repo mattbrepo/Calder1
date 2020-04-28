@@ -14,14 +14,16 @@ namespace Calder1
 	{
 		#region field
 		private Calder1Repository _repo;
-		private List<ListViewItem> _labels; 
+		private List<ListViewItem> _labels;
+        private bool _clearing;
 		#endregion
 
 		#region ctor
 		public RecordForm()
 		{
 			InitializeComponent();
-		} 
+            _clearing = false;
+        } 
 		#endregion
 
 		#region public function
@@ -150,9 +152,11 @@ namespace Calder1
 
 		private void ClearUI()
 		{
+            _clearing = true;
             cmbLanguage.Items.Clear();
             cmbAuthor.Items.Clear();
             listViewLabels.Clear();
+            listViewLabels.Items.Clear();
             chkOnlySelectedLabel.Checked = false;
 			chkFavorite.Checked = false;
 			this.Text = "";
@@ -160,6 +164,7 @@ namespace Calder1
             txtFilter.Text = "";
             txtKeyWords.Text = "";
             txtDate.Text = "";
+            _clearing = false;
         }
 
 		#endregion
@@ -223,14 +228,18 @@ namespace Calder1
 			cmdBrowse.Visible = optDoc.Checked;
 		}
 
-		private void txtLabelFilter_TextChanged(object sender, EventArgs e)
+		private void txtFilter_TextChanged(object sender, EventArgs e)
 		{
+            if (_clearing)
+                return;
 			UpdateUI();
 		}
 
 		private void chkOnlySelectedLabel_CheckedChanged(object sender, EventArgs e)
 		{
-			UpdateUI();
+            if (_clearing)
+                return;
+            UpdateUI();
 		}
 
 		private void cmdAddLabel_Click(object sender, EventArgs e)
