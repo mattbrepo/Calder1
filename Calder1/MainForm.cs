@@ -42,24 +42,25 @@ namespace Calder1
 
 		#region field
 		private Calder1Repository _repo = null;
-		
 		private RecordForm _recForm = new RecordForm();
         private SearchForm _searchForm = new SearchForm();
         private bool _openingRepo;
 		private object _state = new object();
 		private NamedPipeServerStream _pipeServer;
-		#endregion
+        private bool _firstShow;
+        #endregion
 
-		#region form
-		public MainForm()
+        #region form
+        public MainForm()
 		{
 			InitializeComponent();
             Text = APP_NAME + " " + APP_VERSION;
 
 			ssInfoRecord.Text = "";
 			ssInfoSelected.Text = "";
+            _firstShow = true;
 
-			if (Calder1.Properties.Settings.Default.Repositories != null)
+            if (Calder1.Properties.Settings.Default.Repositories != null)
 			{
 				foreach (var item in Calder1.Properties.Settings.Default.Repositories)
 				{
@@ -84,7 +85,7 @@ namespace Calder1
 			//Open pipe connection (see Program.cs)
 			_pipeServer = new NamedPipeServerStream(MainForm.PIPE_NAME, PipeDirection.InOut, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
 			_pipeServer.BeginWaitForConnection(PipeAsyncCallback, _state);
-		}
+        }
 
 		/// <summary>
 		/// Pipe connection handler
@@ -540,7 +541,7 @@ namespace Calder1
         private void gridView_VisibleChanged(object sender, EventArgs e)
         {
             // remove auto size column
-            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // %colresize%
+            //gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // %colresize%
         }
 
         #endregion
@@ -767,11 +768,23 @@ namespace Calder1
 				}
 			}
 
-            gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            //gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells; // %colresize%
             gridView.DataSource = table;
 
-            if (gridView.Visible)
-                gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // to allow column resize (%colresize%)
+            if (_firstShow)
+            {
+                _firstShow = false;
+                gridView.Columns[0].Width = 40;
+                gridView.Columns[1].Width = 450;
+                gridView.Columns[2].Width = 70;
+                gridView.Columns[3].Width = 200;
+                gridView.Columns[4].Width = 40;
+                gridView.Columns[5].Width = 40;
+                gridView.Columns[6].Width = 50;
+            }
+
+            //if (gridView.Visible)
+            //    gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None; // to allow column resize (%colresize%)
 
             ssInfoSelected.Text = table.Rows.Count + "/" + _repo.Content.Count;
 			return res;
