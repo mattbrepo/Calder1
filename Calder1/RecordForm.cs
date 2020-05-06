@@ -14,7 +14,9 @@ namespace Calder1
 	{
 		#region field
 		private Calder1Repository _repo;
-		private List<ListViewItem> _labels;
+        private Calder1Record _record;
+        private Calder1Record _lastSelectedRecord;
+        private List<ListViewItem> _labels;
         private bool _clearing;
 		#endregion
 
@@ -27,12 +29,15 @@ namespace Calder1
 		#endregion
 
 		#region public function
-		internal void SetRepository(Calder1Repository repo, Calder1Record record)
+		internal void SetRepository(Calder1Repository repo, Calder1Record record, Calder1Record lastSelectedRecord)
 		{
             _repo = repo;
+            _record = record;
+            _lastSelectedRecord = lastSelectedRecord;
 
             ClearUI();
 
+            cmdCopyLabelsFromSelRec.Enabled = (_lastSelectedRecord != null);
             cmbLanguage.Items.AddRange(_repo.Content.Select(x => x.Language).Where(x => x != "").Distinct().ToArray<string>());
 			cmbAuthor.Items.AddRange(_repo.Content.Select(x => x.Author).Where(x => x != "").Distinct().ToArray<string>());
 
@@ -271,10 +276,17 @@ namespace Calder1
                 item.Checked = true;
         }
 
-		#endregion
+        private void cmdCopyLabelsFromSelRec_Click(object sender, EventArgs e)
+        {
+            if (_lastSelectedRecord != null)
+            {
+                txtFilter.Text = _lastSelectedRecord.Labels;
+            }
+        }
+        #endregion
 
-		#region private function
-		private void UpdateUI()
+        #region private function
+        private void UpdateUI()
 		{
 			listViewLabels.Items.Clear();
 
@@ -303,8 +315,8 @@ namespace Calder1
 				}
 			}
 		}
-		
-		#endregion
 
-	}
+        #endregion
+
+    }
 }

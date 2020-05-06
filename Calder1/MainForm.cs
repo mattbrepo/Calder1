@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.4)";
+        private const string APP_VERSION = "(v0.5)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -595,7 +595,14 @@ namespace Calder1
 				return;
 			}
 
-			_recForm.SetRepository(_repo, null);
+            Calder1Record lastSelectedRecord = null;
+            if (gridView.CurrentCell != null && gridView.CurrentCell.RowIndex >= 0)
+            {
+                int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
+                lastSelectedRecord = _repo.Content[contentIndex];
+            }
+
+            _recForm.SetRepository(_repo, null, lastSelectedRecord);
 			if (filePathOrURL != null && IsValidURL(filePathOrURL))
 				_recForm.SetURL(filePathOrURL);
 			else
@@ -649,7 +656,7 @@ namespace Calder1
 		/// <param name="r"></param>
 		private void EditRecord(Calder1Record r)
 		{
-			_recForm.SetRepository(_repo, r);
+            _recForm.SetRepository(_repo, r, null);
 			if (_recForm.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 			r.CopyData(_recForm.GetRecord());
 			UpdateUI();

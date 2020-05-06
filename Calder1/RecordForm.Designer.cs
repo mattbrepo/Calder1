@@ -61,6 +61,7 @@
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmdCopyLabelsFromSelRec = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -283,6 +284,7 @@
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.cmdCopyLabelsFromSelRec);
             this.panel7.Controls.Add(this.cmdSelectAll);
             this.panel7.Controls.Add(this.cmdAddLabel);
             this.panel7.Controls.Add(this.chkOnlySelectedLabel);
@@ -296,7 +298,7 @@
             // 
             // cmdSelectAll
             // 
-            this.cmdSelectAll.Location = new System.Drawing.Point(487, 2);
+            this.cmdSelectAll.Location = new System.Drawing.Point(500, 2);
             this.cmdSelectAll.Name = "cmdSelectAll";
             this.cmdSelectAll.Size = new System.Drawing.Size(75, 23);
             this.cmdSelectAll.TabIndex = 11;
@@ -317,7 +319,7 @@
             // chkOnlySelectedLabel
             // 
             this.chkOnlySelectedLabel.AutoSize = true;
-            this.chkOnlySelectedLabel.Location = new System.Drawing.Point(259, 7);
+            this.chkOnlySelectedLabel.Location = new System.Drawing.Point(372, 8);
             this.chkOnlySelectedLabel.Name = "chkOnlySelectedLabel";
             this.chkOnlySelectedLabel.Size = new System.Drawing.Size(122, 17);
             this.chkOnlySelectedLabel.TabIndex = 9;
@@ -329,7 +331,7 @@
             // 
             this.txtFilter.Location = new System.Drawing.Point(47, 5);
             this.txtFilter.Name = "txtFilter";
-            this.txtFilter.Size = new System.Drawing.Size(131, 20);
+            this.txtFilter.Size = new System.Drawing.Size(188, 20);
             this.txtFilter.TabIndex = 3;
             this.txtFilter.TextChanged += new System.EventHandler(this.txtFilter_TextChanged);
             // 
@@ -400,6 +402,16 @@
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
             // 
+            // cmdCopyLabelsFromSelRec
+            // 
+            this.cmdCopyLabelsFromSelRec.Location = new System.Drawing.Point(241, 2);
+            this.cmdCopyLabelsFromSelRec.Name = "cmdCopyLabelsFromSelRec";
+            this.cmdCopyLabelsFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyLabelsFromSelRec.TabIndex = 12;
+            this.cmdCopyLabelsFromSelRec.Text = "Copy Last";
+            this.cmdCopyLabelsFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyLabelsFromSelRec.Click += new System.EventHandler(this.cmdCopyLabelsFromSelRec_Click);
+            // 
             // RecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -469,7 +481,6 @@
         private System.Windows.Forms.Label lblKeywords;
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button cmdSelectAll;
-
-
-	}
+        private System.Windows.Forms.Button cmdCopyLabelsFromSelRec;
+    }
 }
