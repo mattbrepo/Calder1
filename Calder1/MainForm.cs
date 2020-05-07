@@ -489,7 +489,7 @@ namespace Calder1
                             continue;
 
                         filePathNew = Path.Combine(sfd.SelectedPath, Path.GetFileName(records[i].URL));
-                        File.Copy(_repo.GetRecordPath(record1RightClick), filePathNew);
+                        File.Copy(_repo.GetRecordPath(records[i]), filePathNew);
                     }
 				}
 				catch (Exception ex)
