@@ -319,14 +319,6 @@ namespace Calder1
 				OpenURLFile(r);
 				return;
 			}
-
-			if (Control.ModifierKeys == Keys.Shift && e.KeyChar == 13) // SHIFT+Return to edit (check also F2)
-			{
-				int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
-				Calder1Record r = _repo.Content[contentIndex];
-				EditRecord(r);
-				return;
-			}
 		}
 
         private void gridView_KeyDown(object sender, KeyEventArgs e)
@@ -338,6 +330,15 @@ namespace Calder1
                 int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
                 Calder1Record r = _repo.Content[contentIndex];
                 EditRecord(r);
+                return;
+            }
+
+            if (e.KeyCode == Keys.Enter && e.Shift) // SHIFT+Return to edit record
+            {
+                int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
+                Calder1Record r = _repo.Content[contentIndex];
+                EditRecord(r);
+                e.SuppressKeyPress = true;
                 return;
             }
         }
