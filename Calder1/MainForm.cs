@@ -129,10 +129,15 @@ namespace Calder1
 		private void notifyIcon1_DoubleClick(object sender, EventArgs e)
 		{
 			//restore from notification area
-			this.Show();
+            if (this.Visible)
+                this.Hide();
+            this.Show();
 			this.WindowState = FormWindowState.Normal;
 			this.BringToFront();
-		}
+            this.TopMost = true;
+            Application.DoEvents();
+            this.TopMost = false;
+        }
 
 		private void MainForm_Resize(object sender, EventArgs e)
 		{
