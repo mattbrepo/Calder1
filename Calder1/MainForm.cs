@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.5)";
+        private const string APP_VERSION = "(v0.51)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -649,6 +649,7 @@ namespace Calder1
             if (prevFavorite)
                 tsbFavorite.Checked = true;
             tstSearch.Text = prevSearch; // restore previous search
+            UpdateUI();
         }
 
 		/// <summary>
