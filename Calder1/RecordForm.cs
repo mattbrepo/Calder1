@@ -283,6 +283,15 @@ namespace Calder1
                 txtFilter.Text = _lastSelectedRecord.Labels;
             }
         }
+
+        private void cmdCopyTitleFromSelRec_Click(object sender, EventArgs e)
+        {
+            if (_lastSelectedRecord != null)
+            {
+                txtTitle.Text = _lastSelectedRecord.Title;
+            }
+        }
+
         #endregion
 
         #region private function

@@ -50,6 +50,7 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.listViewLabels = new System.Windows.Forms.ListView();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.cmdCopyLabelsFromSelRec = new System.Windows.Forms.Button();
             this.cmdSelectAll = new System.Windows.Forms.Button();
             this.cmdAddLabel = new System.Windows.Forms.Button();
             this.chkOnlySelectedLabel = new System.Windows.Forms.CheckBox();
@@ -61,7 +62,7 @@
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmdCopyLabelsFromSelRec = new System.Windows.Forms.Button();
+            this.cmdCopyTitleFromSelRec = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -235,6 +236,7 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.cmdCopyTitleFromSelRec);
             this.panel5.Controls.Add(this.txtTitle);
             this.panel5.Controls.Add(this.lblTitle);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -247,7 +249,7 @@
             // 
             this.txtTitle.Location = new System.Drawing.Point(47, 4);
             this.txtTitle.Name = "txtTitle";
-            this.txtTitle.Size = new System.Drawing.Size(602, 20);
+            this.txtTitle.Size = new System.Drawing.Size(529, 20);
             this.txtTitle.TabIndex = 1;
             // 
             // lblTitle
@@ -295,6 +297,16 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(658, 31);
             this.panel7.TabIndex = 12;
+            // 
+            // cmdCopyLabelsFromSelRec
+            // 
+            this.cmdCopyLabelsFromSelRec.Location = new System.Drawing.Point(241, 2);
+            this.cmdCopyLabelsFromSelRec.Name = "cmdCopyLabelsFromSelRec";
+            this.cmdCopyLabelsFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyLabelsFromSelRec.TabIndex = 12;
+            this.cmdCopyLabelsFromSelRec.Text = "Copy Last";
+            this.cmdCopyLabelsFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyLabelsFromSelRec.Click += new System.EventHandler(this.cmdCopyLabelsFromSelRec_Click);
             // 
             // cmdSelectAll
             // 
@@ -402,15 +414,15 @@
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
             // 
-            // cmdCopyLabelsFromSelRec
+            // cmdCopyTitleFromSelRec
             // 
-            this.cmdCopyLabelsFromSelRec.Location = new System.Drawing.Point(241, 2);
-            this.cmdCopyLabelsFromSelRec.Name = "cmdCopyLabelsFromSelRec";
-            this.cmdCopyLabelsFromSelRec.Size = new System.Drawing.Size(75, 23);
-            this.cmdCopyLabelsFromSelRec.TabIndex = 12;
-            this.cmdCopyLabelsFromSelRec.Text = "Copy Last";
-            this.cmdCopyLabelsFromSelRec.UseVisualStyleBackColor = true;
-            this.cmdCopyLabelsFromSelRec.Click += new System.EventHandler(this.cmdCopyLabelsFromSelRec_Click);
+            this.cmdCopyTitleFromSelRec.Location = new System.Drawing.Point(582, 1);
+            this.cmdCopyTitleFromSelRec.Name = "cmdCopyTitleFromSelRec";
+            this.cmdCopyTitleFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyTitleFromSelRec.TabIndex = 13;
+            this.cmdCopyTitleFromSelRec.Text = "Copy Last";
+            this.cmdCopyTitleFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyTitleFromSelRec.Click += new System.EventHandler(this.cmdCopyTitleFromSelRec_Click);
             // 
             // RecordForm
             // 
@@ -482,5 +494,6 @@
         private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Button cmdSelectAll;
         private System.Windows.Forms.Button cmdCopyLabelsFromSelRec;
+        private System.Windows.Forms.Button cmdCopyTitleFromSelRec;
     }
 }
