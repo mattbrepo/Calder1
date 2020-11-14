@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.51)";
+        private const string APP_VERSION = "(v0.52)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -332,17 +332,19 @@ namespace Calder1
 
             if (e.KeyCode == Keys.F2) // F2 to edit (check also SHIFT+Return)
             {
-                int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
+                int rowIndex = gridView.CurrentCell.RowIndex;
+                int contentIndex = int.Parse(gridView.Rows[rowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
                 Calder1Record r = _repo.Content[contentIndex];
-                EditRecord(r);
+                EditRecord(r, rowIndex);
                 return;
             }
 
             if (e.KeyCode == Keys.Enter && e.Shift) // SHIFT+Return to edit record
             {
+                int rowIndex = gridView.CurrentCell.RowIndex;
                 int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
                 Calder1Record r = _repo.Content[contentIndex];
-                EditRecord(r);
+                EditRecord(r, rowIndex);
                 e.SuppressKeyPress = true;
                 return;
             }
@@ -389,6 +391,7 @@ namespace Calder1
             else
             {
                 m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
+                m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
             }
             
             m.Show(gridView, new Point(e.X, e.Y));
@@ -411,12 +414,13 @@ namespace Calder1
                 records.Add(recordRC);
             }
             Calder1Record record1RightClick = records[0];
+            int record1RowIndex = gridView.SelectedRows[0].Index;
 
             // actions
             string menu = ((MenuItem)sender).Text;
 			if (menu == MENU_EDIT_RECORD)
             {
-				EditRecord(record1RightClick);
+                EditRecord(record1RightClick, record1RowIndex);
                 return;
             }
 
@@ -437,6 +441,7 @@ namespace Calder1
 					}
 				}
 				UpdateUI();
+                SelectRecordUI(record1RowIndex - 1);
                 return;
 			}
 
@@ -454,8 +459,12 @@ namespace Calder1
 
             if (menu == MENU_TOGGLE_FAV)
             {
-                record1RightClick.InvertFavorite();
+                for (int i = 0; i < records.Count; i++)
+                {
+                    records[i].InvertFavorite();
+                }
                 UpdateUI();
+                SelectRecordUI(record1RowIndex);
                 return;
             }
 
@@ -518,7 +527,6 @@ namespace Calder1
 				Clipboard.SetText(Path.GetFileName(record1RightClick.URL));
 				return;
 			}
-
 		}
 
         private void tsbSearch_Click(object sender, EventArgs e)
@@ -579,6 +587,8 @@ namespace Calder1
 		/// <param name="r"></param>
 		private void SelectRecordUI(int row)
 		{
+            if (row < 0 || row >= gridView.Rows.Count)
+                return;
 			gridView.Rows[row].Selected = true;
 			gridView.CurrentCell = gridView.Rows[row].Cells[0];
 			gridView.FirstDisplayedScrollingRowIndex = gridView.SelectedRows[0].Index;
@@ -646,27 +656,26 @@ namespace Calder1
             // reset search & favorite
             tstSearch.Text = "";
 			tsbFavorite.Checked = false;
-
-			UpdateUI();
-			SelectRecordUI(_repo.Content.Count - 1);
-
+            
             // restore search & favorite
             if (prevFavorite)
                 tsbFavorite.Checked = true;
             tstSearch.Text = prevSearch; // restore previous search
             UpdateUI();
+            SelectRecordUI(gridView.Rows.Count - 1);
         }
 
 		/// <summary>
 		/// Edit a record with the UI
 		/// </summary>
 		/// <param name="r"></param>
-		private void EditRecord(Calder1Record r)
+		private void EditRecord(Calder1Record r, int rowIndex)
 		{
             _recForm.SetRepository(_repo, r, null);
 			if (_recForm.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 			r.CopyData(_recForm.GetRecord());
 			UpdateUI();
+            SelectRecordUI(rowIndex);
 		}
 
 		/// <summary>
