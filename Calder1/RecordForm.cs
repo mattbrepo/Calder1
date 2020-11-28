@@ -12,8 +12,13 @@ namespace Calder1
 {
 	public partial class RecordForm : Form
 	{
-		#region field
-		private Calder1Repository _repo;
+        #region const
+        const string LABEL_SELECT_ALL = "Select all";
+        const string LABEL_DESELECT_ALL = "Deselect all"; 
+        #endregion
+
+        #region field
+        private Calder1Repository _repo;
         private Calder1Record _record;
         private Calder1Record _lastSelectedRecord;
         private List<ListViewItem> _labels;
@@ -37,6 +42,7 @@ namespace Calder1
 
             ClearUI();
 
+            cmdSelectAll.Text = LABEL_SELECT_ALL;
             cmdCopyLabelsFromSelRec.Enabled = (_lastSelectedRecord != null);
             cmbLanguage.Items.AddRange(_repo.Content.Select(x => x.Language).Where(x => x != "").Distinct().ToArray<string>());
 			cmbAuthor.Items.AddRange(_repo.Content.Select(x => x.Author).Where(x => x != "").Distinct().ToArray<string>());
@@ -272,8 +278,18 @@ namespace Calder1
 
         private void cmdSelectAll_Click(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in listViewLabels.Items)
-                item.Checked = true;
+            if (cmdSelectAll.Text == LABEL_SELECT_ALL)
+            {
+                cmdSelectAll.Text = LABEL_DESELECT_ALL;
+                foreach (ListViewItem item in listViewLabels.Items)
+                    item.Checked = true;
+            }
+            else
+            {
+                cmdSelectAll.Text = LABEL_SELECT_ALL;
+                foreach (ListViewItem item in listViewLabels.Items)
+                    item.Checked = false;
+            }
         }
 
         private void cmdCopyLabelsFromSelRec_Click(object sender, EventArgs e)
