@@ -269,7 +269,13 @@ namespace Calder1
 			UpdateUI();
         }
 
-		private void gridView_RowEnter(object sender, DataGridViewCellEventArgs e)
+        private void tsbShow10_Click(object sender, EventArgs e)
+        {
+            if (_repo == null) return;
+            UpdateUI();
+        }
+
+        private void gridView_RowEnter(object sender, DataGridViewCellEventArgs e)
 		{
             if (_repo == null) return;
             int contentIndex = int.Parse(gridView.Rows[e.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
@@ -306,7 +312,7 @@ namespace Calder1
 
         private void gridView_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (_repo == null) return;
+            if (_repo == null || e.RowIndex < 0) return;
             int contentIndex = int.Parse(gridView.Rows[e.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
             Calder1Record r = _repo.Content[contentIndex];
 			OpenURLFile(r);
@@ -749,7 +755,10 @@ namespace Calder1
 
 		private bool UpdateUI()
 		{
-			return UpdateUI(tstSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
+            //int maxShow = -1;
+            //if (tsbShow10.Checked) maxShow = 10;
+
+            return UpdateUI(tstSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
 		}
 
 		/// <summary>

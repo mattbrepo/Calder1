@@ -44,6 +44,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.tsbShow10 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -83,12 +84,13 @@
             // toolStrip1
             // 
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tsbOpenRepository,
-            this.tstSearch,
+            this.tsbAdd,
             this.tsbSearch,
+            this.tstSearch,
+            this.tsbShow10,
+            this.tsbOpenRepository,
             this.tsbFavorite,
-            this.tscRepo,
-            this.tsbAdd});
+            this.tscRepo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(904, 25);
@@ -195,6 +197,21 @@
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
             // 
+            // tsbShow10
+            // 
+            this.tsbShow10.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbShow10.Checked = true;
+            this.tsbShow10.CheckOnClick = true;
+            this.tsbShow10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsbShow10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbShow10.Image = ((System.Drawing.Image)(resources.GetObject("tsbShow10.Image")));
+            this.tsbShow10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbShow10.Name = "tsbShow10";
+            this.tsbShow10.Size = new System.Drawing.Size(23, 22);
+            this.tsbShow10.Text = "toolStripButton1";
+            this.tsbShow10.Visible = false;
+            this.tsbShow10.Click += new System.EventHandler(this.tsbShow10_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -238,6 +255,7 @@
 		private System.Windows.Forms.ToolStripStatusLabel ssInfoSelected;
 		private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ToolStripTextBox tstSearch;
+        private System.Windows.Forms.ToolStripButton tsbShow10;
     }
 }
 
