@@ -292,6 +292,14 @@ namespace Calder1
             }
         }
 
+        private void cmdCopyKeyWordsFromSelRec_Click(object sender, EventArgs e)
+        {
+            if (_lastSelectedRecord != null)
+            {
+                txtKeyWords.Text = _lastSelectedRecord.Keywords;
+            }
+        }
+
         #endregion
 
         #region private function

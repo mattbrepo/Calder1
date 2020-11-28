@@ -45,6 +45,7 @@
             this.optBookmark = new System.Windows.Forms.RadioButton();
             this.optDoc = new System.Windows.Forms.RadioButton();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.cmdCopyTitleFromSelRec = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -62,7 +63,8 @@
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.cmdCopyTitleFromSelRec = new System.Windows.Forms.Button();
+            this.panelKeyWordsBottom = new System.Windows.Forms.Panel();
+            this.cmdCopyKeyWordsFromSelRec = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,6 +75,7 @@
             this.panelKeyWords.SuspendLayout();
             this.panelKWLabel.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panelKeyWordsBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -245,6 +248,16 @@
             this.panel5.Size = new System.Drawing.Size(660, 25);
             this.panel5.TabIndex = 12;
             // 
+            // cmdCopyTitleFromSelRec
+            // 
+            this.cmdCopyTitleFromSelRec.Location = new System.Drawing.Point(582, 1);
+            this.cmdCopyTitleFromSelRec.Name = "cmdCopyTitleFromSelRec";
+            this.cmdCopyTitleFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyTitleFromSelRec.TabIndex = 13;
+            this.cmdCopyTitleFromSelRec.Text = "Copy Last";
+            this.cmdCopyTitleFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyTitleFromSelRec.Click += new System.EventHandler(this.cmdCopyTitleFromSelRec_Click);
+            // 
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(47, 4);
@@ -369,6 +382,7 @@
             // panelKeyWords
             // 
             this.panelKeyWords.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelKeyWords.Controls.Add(this.panelKeyWordsBottom);
             this.panelKeyWords.Controls.Add(this.txtKeyWords);
             this.panelKeyWords.Controls.Add(this.panelKWLabel);
             this.panelKeyWords.Dock = System.Windows.Forms.DockStyle.Right;
@@ -414,15 +428,24 @@
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
             // 
-            // cmdCopyTitleFromSelRec
+            // panelKeyWordsBottom
             // 
-            this.cmdCopyTitleFromSelRec.Location = new System.Drawing.Point(582, 1);
-            this.cmdCopyTitleFromSelRec.Name = "cmdCopyTitleFromSelRec";
-            this.cmdCopyTitleFromSelRec.Size = new System.Drawing.Size(75, 23);
-            this.cmdCopyTitleFromSelRec.TabIndex = 13;
-            this.cmdCopyTitleFromSelRec.Text = "Copy Last";
-            this.cmdCopyTitleFromSelRec.UseVisualStyleBackColor = true;
-            this.cmdCopyTitleFromSelRec.Click += new System.EventHandler(this.cmdCopyTitleFromSelRec_Click);
+            this.panelKeyWordsBottom.Controls.Add(this.cmdCopyKeyWordsFromSelRec);
+            this.panelKeyWordsBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelKeyWordsBottom.Location = new System.Drawing.Point(0, 411);
+            this.panelKeyWordsBottom.Name = "panelKeyWordsBottom";
+            this.panelKeyWordsBottom.Size = new System.Drawing.Size(198, 26);
+            this.panelKeyWordsBottom.TabIndex = 14;
+            // 
+            // cmdCopyKeyWordsFromSelRec
+            // 
+            this.cmdCopyKeyWordsFromSelRec.Location = new System.Drawing.Point(124, 0);
+            this.cmdCopyKeyWordsFromSelRec.Name = "cmdCopyKeyWordsFromSelRec";
+            this.cmdCopyKeyWordsFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyKeyWordsFromSelRec.TabIndex = 13;
+            this.cmdCopyKeyWordsFromSelRec.Text = "Copy Last";
+            this.cmdCopyKeyWordsFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyKeyWordsFromSelRec.Click += new System.EventHandler(this.cmdCopyKeyWordsFromSelRec_Click);
             // 
             // RecordForm
             // 
@@ -455,6 +478,7 @@
             this.panelKWLabel.ResumeLayout(false);
             this.panelKWLabel.PerformLayout();
             this.panel8.ResumeLayout(false);
+            this.panelKeyWordsBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
@@ -495,5 +519,7 @@
         private System.Windows.Forms.Button cmdSelectAll;
         private System.Windows.Forms.Button cmdCopyLabelsFromSelRec;
         private System.Windows.Forms.Button cmdCopyTitleFromSelRec;
+        private System.Windows.Forms.Panel panelKeyWordsBottom;
+        private System.Windows.Forms.Button cmdCopyKeyWordsFromSelRec;
     }
 }
