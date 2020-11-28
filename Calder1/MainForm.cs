@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.52)";
+        private const string APP_VERSION = "(v0.53)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -554,7 +554,7 @@ namespace Calder1
             tsbAdd.Enabled = false;
             tscRepo.Enabled = false;
 
-            UpdateUI(_searchForm.GetSearchText(), _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels(), _searchForm.HasKeywords());
+            UpdateUI(_searchForm.GetSearchText(), -1, _searchForm.HasFavorite(), _searchForm.HasMatchCase(), _searchForm.HasURL(), _searchForm.HasTitle(), _searchForm.HasLabels(), _searchForm.HasKeywords());
         }
 
         private void gridView_VisibleChanged(object sender, EventArgs e)
@@ -755,10 +755,10 @@ namespace Calder1
 
 		private bool UpdateUI()
 		{
-            //int maxShow = -1;
-            //if (tsbShow10.Checked) maxShow = 10;
+            int maxShow = -1;
+            if (tsbShow10.Checked) maxShow = 10;
 
-            return UpdateUI(tstSearch.Text, tsbFavorite.Checked, false, true, true, true, true);
+            return UpdateUI(tstSearch.Text, maxShow, tsbFavorite.Checked, false, true, true, true, true);
 		}
 
 		/// <summary>
@@ -766,7 +766,7 @@ namespace Calder1
 		/// </summary>
 		/// <param name="searchText"></param>
 		/// <returns></returns>
-        private bool UpdateUI(string searchText, bool favorite, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels, bool alsoKeywords)
+        private bool UpdateUI(string searchText, int maxShow, bool favorite, bool matchCase, bool alsoURL, bool alsoTitle, bool alsoLabels, bool alsoKeywords)
 		{
 			if (_repo == null) return false;
 
@@ -789,15 +789,40 @@ namespace Calder1
 			table.Columns.Add(TAB_HEADER_INDEX);
 
 			bool res = false;
-            for (int i = 0; i < _repo.Content.Count; i++)
+
+            if (maxShow <= 0 || string.IsNullOrEmpty(searchText))
+            { 
+                for (int i = 0; i < _repo.Content.Count; i++)
+                {
+                    Calder1Record item = _repo.Content[i];
+                    if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
+				    {
+					    res = true;
+					    table.Rows.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });
+				    }
+			    }
+            }
+            else
             {
-                Calder1Record item = _repo.Content[i];
-                if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
-				{
-					res = true;
-					table.Rows.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });
-				}
-			}
+                List<object[]> items = new List<object[]>();
+                for (int i = _repo.Content.Count - 1; i >= 0; i--)
+                {
+                    Calder1Record item = _repo.Content[i];
+                    if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
+                    {
+                        res = true;
+                        items.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });
+                        if (maxShow <= items.Count)
+                            break;
+                    }
+                }
+
+                // reverting the order
+                for (int i = items.Count - 1; i >= 0; i--)
+                {
+                    table.Rows.Add(items[i]);
+                }
+            }
 
             //gridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells; // %colresize%
             gridView.DataSource = table;

@@ -35,16 +35,16 @@
             this.ssInfoSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.ssInfoRecord = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.tsbOpenRepository = new System.Windows.Forms.ToolStripButton();
-            this.tstSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.tsbSearch = new System.Windows.Forms.ToolStripButton();
+            this.tstSearch = new System.Windows.Forms.ToolStripTextBox();
+            this.tsbShow10 = new System.Windows.Forms.ToolStripButton();
+            this.tsbOpenRepository = new System.Windows.Forms.ToolStripButton();
             this.tsbFavorite = new System.Windows.Forms.ToolStripButton();
             this.tscRepo = new System.Windows.Forms.ToolStripComboBox();
-            this.tsbAdd = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gridView = new System.Windows.Forms.DataGridView();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.tsbShow10 = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -97,23 +97,16 @@
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
-            // tsbOpenRepository
+            // tsbAdd
             // 
-            this.tsbOpenRepository.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbOpenRepository.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpenRepository.Image")));
-            this.tsbOpenRepository.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbOpenRepository.Name = "tsbOpenRepository";
-            this.tsbOpenRepository.Size = new System.Drawing.Size(23, 22);
-            this.tsbOpenRepository.Text = "Open";
-            this.tsbOpenRepository.Click += new System.EventHandler(this.tsbOpenRepository_Click);
-            // 
-            // tstSearch
-            // 
-            this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tstSearch.Name = "tstSearch";
-            this.tstSearch.Size = new System.Drawing.Size(300, 25);
-            this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
-            this.tstSearch.TextChanged += new System.EventHandler(this.tstSearch_TextChanged);
+            this.tsbAdd.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
+            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbAdd.Name = "tsbAdd";
+            this.tsbAdd.Size = new System.Drawing.Size(23, 22);
+            this.tsbAdd.Text = "Add record";
+            this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // tsbSearch
             // 
@@ -123,8 +116,40 @@
             this.tsbSearch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbSearch.Name = "tsbSearch";
             this.tsbSearch.Size = new System.Drawing.Size(23, 22);
-            this.tsbSearch.Text = "Search";
+            this.tsbSearch.Text = "Advanced search";
             this.tsbSearch.Click += new System.EventHandler(this.tsbSearch_Click);
+            // 
+            // tstSearch
+            // 
+            this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstSearch.Name = "tstSearch";
+            this.tstSearch.Size = new System.Drawing.Size(300, 25);
+            this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
+            this.tstSearch.TextChanged += new System.EventHandler(this.tstSearch_TextChanged);
+            // 
+            // tsbShow10
+            // 
+            this.tsbShow10.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbShow10.Checked = true;
+            this.tsbShow10.CheckOnClick = true;
+            this.tsbShow10.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.tsbShow10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbShow10.Image = ((System.Drawing.Image)(resources.GetObject("tsbShow10.Image")));
+            this.tsbShow10.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbShow10.Name = "tsbShow10";
+            this.tsbShow10.Size = new System.Drawing.Size(23, 22);
+            this.tsbShow10.Text = "Show last 10 records";
+            this.tsbShow10.Click += new System.EventHandler(this.tsbShow10_Click);
+            // 
+            // tsbOpenRepository
+            // 
+            this.tsbOpenRepository.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbOpenRepository.Image = ((System.Drawing.Image)(resources.GetObject("tsbOpenRepository.Image")));
+            this.tsbOpenRepository.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbOpenRepository.Name = "tsbOpenRepository";
+            this.tsbOpenRepository.Size = new System.Drawing.Size(23, 22);
+            this.tsbOpenRepository.Text = "Open repository";
+            this.tsbOpenRepository.Click += new System.EventHandler(this.tsbOpenRepository_Click);
             // 
             // tsbFavorite
             // 
@@ -135,7 +160,7 @@
             this.tsbFavorite.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFavorite.Name = "tsbFavorite";
             this.tsbFavorite.Size = new System.Drawing.Size(23, 22);
-            this.tsbFavorite.Text = "Favorite";
+            this.tsbFavorite.Text = "Show favorite records";
             this.tsbFavorite.ToolTipText = "Favorite (CTRL+F)";
             this.tsbFavorite.Click += new System.EventHandler(this.tsbFavorite_Click);
             // 
@@ -146,17 +171,6 @@
             this.tscRepo.Size = new System.Drawing.Size(400, 25);
             this.tscRepo.ToolTipText = "Repositories (F4)";
             this.tscRepo.SelectedIndexChanged += new System.EventHandler(this.tscRepo_SelectedIndexChanged);
-            // 
-            // tsbAdd
-            // 
-            this.tsbAdd.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbAdd.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbAdd.Image = ((System.Drawing.Image)(resources.GetObject("tsbAdd.Image")));
-            this.tsbAdd.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbAdd.Name = "tsbAdd";
-            this.tsbAdd.Size = new System.Drawing.Size(23, 22);
-            this.tsbAdd.Text = "Add";
-            this.tsbAdd.Click += new System.EventHandler(this.tsbAdd_Click);
             // 
             // panel1
             // 
@@ -196,21 +210,6 @@
             this.notifyIcon1.Text = "Calder1";
             this.notifyIcon1.Visible = true;
             this.notifyIcon1.DoubleClick += new System.EventHandler(this.notifyIcon1_DoubleClick);
-            // 
-            // tsbShow10
-            // 
-            this.tsbShow10.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tsbShow10.Checked = true;
-            this.tsbShow10.CheckOnClick = true;
-            this.tsbShow10.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.tsbShow10.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsbShow10.Image = ((System.Drawing.Image)(resources.GetObject("tsbShow10.Image")));
-            this.tsbShow10.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbShow10.Name = "tsbShow10";
-            this.tsbShow10.Size = new System.Drawing.Size(23, 22);
-            this.tsbShow10.Text = "toolStripButton1";
-            this.tsbShow10.Visible = false;
-            this.tsbShow10.Click += new System.EventHandler(this.tsbShow10_Click);
             // 
             // MainForm
             // 
