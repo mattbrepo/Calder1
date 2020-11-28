@@ -532,7 +532,6 @@ namespace Calder1
         private void tsbSearch_Click(object sender, EventArgs e)
         {
             DialogResult dr = _searchForm.ShowDialog();
-            tstSearch.Text = "";
             if (dr != System.Windows.Forms.DialogResult.OK)
             {
                 tsbSearch.Checked = false;
@@ -540,9 +539,9 @@ namespace Calder1
                 tsbFavorite.Enabled = true;
                 tsbAdd.Enabled = true;
                 tscRepo.Enabled = true; 
-                UpdateUI();
                 return;
             }
+            tstSearch.Text = "";
             tsbSearch.Checked = true;
             tstSearch.Enabled = false;
             tsbFavorite.Enabled = false;
