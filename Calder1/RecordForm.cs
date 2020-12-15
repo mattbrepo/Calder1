@@ -305,6 +305,7 @@ namespace Calder1
             if (_lastSelectedRecord != null)
             {
                 txtTitle.Text = _lastSelectedRecord.Title;
+                cmbLanguage.SelectedIndex = cmbLanguage.Items.IndexOf(_lastSelectedRecord.Language);
             }
         }
 
