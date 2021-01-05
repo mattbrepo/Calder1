@@ -336,6 +336,15 @@ namespace Calder1
         {
             if (_repo == null) return;
 
+            if (e.KeyCode == Keys.Oemplus && e.Control) // CTRL+
+            {
+                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size + 1);
+            }
+            if (e.KeyCode == Keys.OemMinus && e.Control) // CTRL-
+            {
+                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size - 1);
+            }
+
             if (e.KeyCode == Keys.F2) // F2 to edit (check also SHIFT+Return)
             {
                 int rowIndex = gridView.CurrentCell.RowIndex;
