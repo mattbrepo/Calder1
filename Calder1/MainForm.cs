@@ -85,13 +85,25 @@ namespace Calder1
 			//Open pipe connection (see Program.cs)
 			_pipeServer = new NamedPipeServerStream(MainForm.PIPE_NAME, PipeDirection.InOut, NamedPipeServerStream.MaxAllowedServerInstances, PipeTransmissionMode.Message, PipeOptions.Asynchronous);
 			_pipeServer.BeginWaitForConnection(PipeAsyncCallback, _state);
+
+            this.MouseWheel += MainForm_MouseWheel;
+            gridView.MouseWheel += MainForm_MouseWheel;
         }
 
-		/// <summary>
-		/// Pipe connection handler
-		/// </summary>
-		/// <param name="ar"></param>
-		public void PipeAsyncCallback(IAsyncResult ar)
+        private void MainForm_MouseWheel(object sender, MouseEventArgs e)
+        {
+            // zoom
+            if (Control.ModifierKeys == Keys.Control)
+            {
+                this.Font = new Font(this.Font.FontFamily, this.Font.Size + (e.Delta > 0 ? 1 : -1));
+            }
+        }
+
+        /// <summary>
+        /// Pipe connection handler
+        /// </summary>
+        /// <param name="ar"></param>
+        public void PipeAsyncCallback(IAsyncResult ar)
 		{
 			//restore from notification area with pipe communication
 			string s = "1,"; //pro-debug

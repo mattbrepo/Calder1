@@ -30,11 +30,12 @@ namespace Calder1
 		{
 			InitializeComponent();
             _clearing = false;
-        } 
-		#endregion
+            this.MouseWheel += RecordForm_MouseWheel;
+        }
+        #endregion
 
-		#region public function
-		internal void SetRepository(Calder1Repository repo, Calder1Record record, Calder1Record lastSelectedRecord)
+        #region public function
+        internal void SetRepository(Calder1Repository repo, Calder1Record record, Calder1Record lastSelectedRecord)
 		{
             _repo = repo;
             _record = record;
@@ -178,11 +179,20 @@ namespace Calder1
             _clearing = false;
         }
 
-		#endregion
+        #endregion
 
-		#region event
+        #region event
 
-		private void cmdOk_Click(object sender, EventArgs e)
+        private void RecordForm_MouseWheel(object sender, MouseEventArgs e)
+        {
+            // zoom
+            if (Control.ModifierKeys == Keys.Control)
+            {
+                this.Font = new Font(this.Font.FontFamily, this.Font.Size + (e.Delta > 0 ? 1 : -1));
+            }
+        }
+
+        private void cmdOk_Click(object sender, EventArgs e)
 		{
 			if (string.IsNullOrEmpty(txtURL.Text.Trim()))
 			{
