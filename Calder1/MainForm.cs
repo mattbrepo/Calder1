@@ -419,8 +419,11 @@ namespace Calder1
             }
             else
             {
-                m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
                 m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
+                m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
+                m.MenuItems.Add(MENU_COPY_FILE_PATH, RightClickMenu);
+                m.MenuItems.Add(MENU_COPY_FILE_NAME, RightClickMenu);
+                m.MenuItems.Add(MENU_COPY_FILE_NAME_NOEXT, RightClickMenu);
             }
             
             m.Show(gridView, new Point(e.X, e.Y));
@@ -435,7 +438,7 @@ namespace Calder1
         {
             // list of all selected rows
             List<Calder1Record> records = new List<Calder1Record>();
-            for (int i = 0; i < gridView.SelectedRows.Count; i++)
+            for (int i = gridView.SelectedRows.Count - 1; i >= 0; i--)
             {
                 int row = gridView.SelectedRows[i].Index;
                 int contentIndex = int.Parse(gridView.Rows[row].Cells[TAB_HEADER_INDEX].Value.ToString());
@@ -541,27 +544,46 @@ namespace Calder1
 					MessageBox.Show("Error on copy: " + filePathNew, APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
 					ex.ToString();
 				}
-
 				return;
 			}
 
-			if (menu == MENU_COPY_FILE_PATH)
-			{
-				Clipboard.SetText(_repo.GetRecordPath(record1RightClick));
-				return;
-			}
-
-			if (menu == MENU_COPY_FILE_NAME)
-			{
-				Clipboard.SetText(Path.GetFileName(record1RightClick.URL));
-				return;
-			}
-
-            if (menu == MENU_COPY_FILE_NAME_NOEXT)
+			if (menu == MENU_COPY_FILE_PATH || menu == MENU_COPY_FILE_NAME || menu == MENU_COPY_FILE_NAME_NOEXT)
             {
-                Clipboard.SetText(Path.GetFileNameWithoutExtension(record1RightClick.URL));
+                string cpData = "";
+                try
+                {
+                    for (int i = 0; i < records.Count; i++)
+                    {
+                        if (records[i].Kind != Calder1Repository.KIND_DOC)
+                            continue;
+
+                        if (menu == MENU_COPY_FILE_PATH)
+                        {
+                            cpData += _repo.GetRecordPath(records[i]);
+                        }
+                        else if (menu == MENU_COPY_FILE_NAME)
+                        {
+                            cpData += Path.GetFileName(records[i].URL);
+                        }
+                        else if (menu == MENU_COPY_FILE_NAME_NOEXT)
+                        {
+                            cpData += Path.GetFileNameWithoutExtension(records[i].URL);
+                        }
+
+                        if (records.Count > 1)
+                        {
+                            cpData += "\n";
+                        }
+                    }
+                    Clipboard.SetText(cpData.TrimEnd('\r', '\n'));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error ", APP_NAME, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ex.ToString();
+                }
                 return;
-            }
+			}
         }
 
         private void tsbSearch_Click(object sender, EventArgs e)
