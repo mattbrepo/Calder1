@@ -59,12 +59,12 @@
             this.lblLabelFilter = new System.Windows.Forms.Label();
             this.cmdOk = new System.Windows.Forms.Button();
             this.panelKeyWords = new System.Windows.Forms.Panel();
+            this.panelKeyWordsBottom = new System.Windows.Forms.Panel();
+            this.cmdCopyKeyWordsFromSelRec = new System.Windows.Forms.Button();
             this.txtKeyWords = new System.Windows.Forms.TextBox();
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panelKeyWordsBottom = new System.Windows.Forms.Panel();
-            this.cmdCopyKeyWordsFromSelRec = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -73,9 +73,9 @@
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panelKeyWords.SuspendLayout();
+            this.panelKeyWordsBottom.SuspendLayout();
             this.panelKWLabel.SuspendLayout();
             this.panel8.SuspendLayout();
-            this.panelKeyWordsBottom.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -391,6 +391,25 @@
             this.panelKeyWords.Size = new System.Drawing.Size(200, 439);
             this.panelKeyWords.TabIndex = 5;
             // 
+            // panelKeyWordsBottom
+            // 
+            this.panelKeyWordsBottom.Controls.Add(this.cmdCopyKeyWordsFromSelRec);
+            this.panelKeyWordsBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panelKeyWordsBottom.Location = new System.Drawing.Point(0, 411);
+            this.panelKeyWordsBottom.Name = "panelKeyWordsBottom";
+            this.panelKeyWordsBottom.Size = new System.Drawing.Size(198, 26);
+            this.panelKeyWordsBottom.TabIndex = 14;
+            // 
+            // cmdCopyKeyWordsFromSelRec
+            // 
+            this.cmdCopyKeyWordsFromSelRec.Location = new System.Drawing.Point(120, 2);
+            this.cmdCopyKeyWordsFromSelRec.Name = "cmdCopyKeyWordsFromSelRec";
+            this.cmdCopyKeyWordsFromSelRec.Size = new System.Drawing.Size(75, 23);
+            this.cmdCopyKeyWordsFromSelRec.TabIndex = 13;
+            this.cmdCopyKeyWordsFromSelRec.Text = "Copy Last";
+            this.cmdCopyKeyWordsFromSelRec.UseVisualStyleBackColor = true;
+            this.cmdCopyKeyWordsFromSelRec.Click += new System.EventHandler(this.cmdCopyKeyWordsFromSelRec_Click);
+            // 
             // txtKeyWords
             // 
             this.txtKeyWords.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -428,25 +447,6 @@
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
             // 
-            // panelKeyWordsBottom
-            // 
-            this.panelKeyWordsBottom.Controls.Add(this.cmdCopyKeyWordsFromSelRec);
-            this.panelKeyWordsBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelKeyWordsBottom.Location = new System.Drawing.Point(0, 411);
-            this.panelKeyWordsBottom.Name = "panelKeyWordsBottom";
-            this.panelKeyWordsBottom.Size = new System.Drawing.Size(198, 26);
-            this.panelKeyWordsBottom.TabIndex = 14;
-            // 
-            // cmdCopyKeyWordsFromSelRec
-            // 
-            this.cmdCopyKeyWordsFromSelRec.Location = new System.Drawing.Point(124, 0);
-            this.cmdCopyKeyWordsFromSelRec.Name = "cmdCopyKeyWordsFromSelRec";
-            this.cmdCopyKeyWordsFromSelRec.Size = new System.Drawing.Size(75, 23);
-            this.cmdCopyKeyWordsFromSelRec.TabIndex = 13;
-            this.cmdCopyKeyWordsFromSelRec.Text = "Copy Last";
-            this.cmdCopyKeyWordsFromSelRec.UseVisualStyleBackColor = true;
-            this.cmdCopyKeyWordsFromSelRec.Click += new System.EventHandler(this.cmdCopyKeyWordsFromSelRec_Click);
-            // 
             // RecordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -475,10 +475,10 @@
             this.panel7.PerformLayout();
             this.panelKeyWords.ResumeLayout(false);
             this.panelKeyWords.PerformLayout();
+            this.panelKeyWordsBottom.ResumeLayout(false);
             this.panelKWLabel.ResumeLayout(false);
             this.panelKWLabel.PerformLayout();
             this.panel8.ResumeLayout(false);
-            this.panelKeyWordsBottom.ResumeLayout(false);
             this.ResumeLayout(false);
 
 		}
