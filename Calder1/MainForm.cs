@@ -363,7 +363,7 @@ namespace Calder1
                 int rowIndex = gridView.CurrentCell.RowIndex;
                 int contentIndex = int.Parse(gridView.Rows[rowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
                 Calder1Record r = _repo.Content[contentIndex];
-                EditRecord(r, rowIndex);
+                EditRecord(r, rowIndex, true);
                 return;
             }
 
@@ -372,7 +372,7 @@ namespace Calder1
                 int rowIndex = gridView.CurrentCell.RowIndex;
                 int contentIndex = int.Parse(gridView.Rows[gridView.CurrentCell.RowIndex].Cells[TAB_HEADER_INDEX].Value.ToString());
                 Calder1Record r = _repo.Content[contentIndex];
-                EditRecord(r, rowIndex);
+                EditRecord(r, rowIndex, false);
                 e.SuppressKeyPress = true;
                 return;
             }
@@ -452,7 +452,7 @@ namespace Calder1
             string menu = ((MenuItem)sender).Text;
 			if (menu == MENU_EDIT_RECORD)
             {
-                EditRecord(record1RightClick, record1RowIndex);
+                EditRecord(record1RightClick, record1RowIndex, false);
                 return;
             }
 
@@ -674,7 +674,7 @@ namespace Calder1
                 lastSelectedRecord = _repo.Content[contentIndex];
             }
 
-            _recForm.SetRepository(_repo, null, lastSelectedRecord);
+            _recForm.SetRepository(_repo, null, lastSelectedRecord, false);
 			if (filePathOrURL != null && IsValidURL(filePathOrURL))
 				_recForm.SetURL(filePathOrURL);
 			else
@@ -725,9 +725,9 @@ namespace Calder1
 		/// Edit a record with the UI
 		/// </summary>
 		/// <param name="r"></param>
-		private void EditRecord(Calder1Record r, int rowIndex)
+		private void EditRecord(Calder1Record r, int rowIndex, bool selectText)
 		{
-            _recForm.SetRepository(_repo, r, null);
+            _recForm.SetRepository(_repo, r, null, selectText);
 			if (_recForm.ShowDialog() != System.Windows.Forms.DialogResult.OK) return;
 			r.CopyData(_recForm.GetRecord());
 			UpdateUI();

@@ -35,7 +35,7 @@ namespace Calder1
         #endregion
 
         #region public function
-        internal void SetRepository(Calder1Repository repo, Calder1Record record, Calder1Record lastSelectedRecord)
+        internal void SetRepository(Calder1Repository repo, Calder1Record record, Calder1Record lastSelectedRecord, bool selectText)
 		{
             _repo = repo;
             _record = record;
@@ -90,6 +90,11 @@ namespace Calder1
 			txtTitle.Text = record.Title;
 			txtFilter.Text = "";
             txtKeyWords.Text = record.Keywords.Replace(Calder1Repository.KW_NEW_LINE, "\r\n"); // convert newlines
+
+            if (selectText)
+            {
+                this.ActiveControl = txtTitle;
+            }
 		}
 
 		/// <summary>
