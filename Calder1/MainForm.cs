@@ -38,10 +38,11 @@ namespace Calder1
 		private const string MENU_EXPORT_FILE = "Export file";
 		private const string MENU_COPY_FILE_PATH = "Copy file path";
 		private const string MENU_COPY_FILE_NAME = "Copy file name";
-		#endregion
+        private const string MENU_COPY_FILE_NAME_NOEXT = "Copy file name (no ext)";
+        #endregion
 
-		#region field
-		private Calder1Repository _repo = null;
+        #region field
+        private Calder1Repository _repo = null;
 		private RecordForm _recForm = new RecordForm();
         private SearchForm _searchForm = new SearchForm();
         private bool _openingRepo;
@@ -413,6 +414,7 @@ namespace Calder1
                     m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
                     m.MenuItems.Add(MENU_COPY_FILE_PATH, RightClickMenu);
                     m.MenuItems.Add(MENU_COPY_FILE_NAME, RightClickMenu);
+                    m.MenuItems.Add(MENU_COPY_FILE_NAME_NOEXT, RightClickMenu);
                 }
             }
             else
@@ -554,7 +556,13 @@ namespace Calder1
 				Clipboard.SetText(Path.GetFileName(record1RightClick.URL));
 				return;
 			}
-		}
+
+            if (menu == MENU_COPY_FILE_NAME_NOEXT)
+            {
+                Clipboard.SetText(Path.GetFileNameWithoutExtension(record1RightClick.URL));
+                return;
+            }
+        }
 
         private void tsbSearch_Click(object sender, EventArgs e)
         {
