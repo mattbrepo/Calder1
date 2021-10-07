@@ -129,7 +129,7 @@ namespace Calder1
 			try
 			{
 				res.Kind = fields[COL_KIND];
-				res.URL = fields[COL_URL];
+				res.URL = fields[COL_URL].Replace("\"", "");
 				res.Title = fields[COL_TITLE];
 				res.Date = fields[COL_DATE];
 				res.Author = fields[COL_AUTHOR];
