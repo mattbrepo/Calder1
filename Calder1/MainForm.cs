@@ -16,7 +16,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.53)";
+        private const string APP_VERSION = "(v0.54)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -419,6 +419,7 @@ namespace Calder1
             }
             else
             {
+                m.MenuItems.Add(MENU_COPY_TITLE, RightClickMenu);
                 m.MenuItems.Add(MENU_TOGGLE_FAV, RightClickMenu);
                 m.MenuItems.Add(MENU_EXPORT_FILE, RightClickMenu);
                 m.MenuItems.Add(MENU_COPY_FILE_PATH, RightClickMenu);
@@ -479,13 +480,25 @@ namespace Calder1
 
 			if (menu == MENU_COPY_TITLE)
 			{
-				Clipboard.SetText(record1RightClick.Title);
-				return;
+                string clip = "";
+                for (int i = 0; i < records.Count; i++)
+                {
+                    clip += records[i].Title;
+                    if (i != records.Count - 1) clip += "\n";
+                }
+                Clipboard.SetText(clip);
+                return;
 			}
 
 			if (menu == MENU_COPY_LABELS)
 			{
-				Clipboard.SetText(record1RightClick.Labels);
+                string clip = "";
+                for (int i = 0; i < records.Count; i++)
+                {
+                    clip += records[i].Labels;
+                    if (i != records.Count - 1) clip += "\n";
+                }
+                Clipboard.SetText(clip);
 				return;
 			}
 
