@@ -65,6 +65,7 @@
             this.panelKWLabel = new System.Windows.Forms.Panel();
             this.lblKeywords = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.cmdRemoveLabel = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -98,7 +99,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(666, 439);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(687, 439);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // panel3
@@ -113,7 +114,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(3, 77);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(660, 31);
+            this.panel3.Size = new System.Drawing.Size(681, 31);
             this.panel3.TabIndex = 8;
             // 
             // txtDate
@@ -183,7 +184,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(3, 40);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(660, 31);
+            this.panel2.Size = new System.Drawing.Size(681, 31);
             this.panel2.TabIndex = 5;
             // 
             // cmdBrowse
@@ -210,7 +211,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(660, 31);
+            this.panel1.Size = new System.Drawing.Size(681, 31);
             this.panel1.TabIndex = 2;
             // 
             // optBookmark
@@ -245,7 +246,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel5.Location = new System.Drawing.Point(3, 114);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(660, 25);
+            this.panel5.Size = new System.Drawing.Size(681, 25);
             this.panel5.TabIndex = 12;
             // 
             // cmdCopyTitleFromSelRec
@@ -282,7 +283,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(3, 145);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(660, 291);
+            this.panel6.Size = new System.Drawing.Size(681, 291);
             this.panel6.TabIndex = 13;
             // 
             // listViewLabels
@@ -292,13 +293,14 @@
             this.listViewLabels.GridLines = true;
             this.listViewLabels.Location = new System.Drawing.Point(0, 31);
             this.listViewLabels.Name = "listViewLabels";
-            this.listViewLabels.Size = new System.Drawing.Size(658, 258);
+            this.listViewLabels.Size = new System.Drawing.Size(679, 258);
             this.listViewLabels.TabIndex = 13;
             this.listViewLabels.UseCompatibleStateImageBehavior = false;
             this.listViewLabels.View = System.Windows.Forms.View.SmallIcon;
             // 
             // panel7
             // 
+            this.panel7.Controls.Add(this.cmdRemoveLabel);
             this.panel7.Controls.Add(this.cmdCopyLabelsFromSelRec);
             this.panel7.Controls.Add(this.cmdSelectAll);
             this.panel7.Controls.Add(this.cmdAddLabel);
@@ -308,12 +310,12 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(658, 31);
+            this.panel7.Size = new System.Drawing.Size(679, 31);
             this.panel7.TabIndex = 12;
             // 
             // cmdCopyLabelsFromSelRec
             // 
-            this.cmdCopyLabelsFromSelRec.Location = new System.Drawing.Point(241, 2);
+            this.cmdCopyLabelsFromSelRec.Location = new System.Drawing.Point(241, 5);
             this.cmdCopyLabelsFromSelRec.Name = "cmdCopyLabelsFromSelRec";
             this.cmdCopyLabelsFromSelRec.Size = new System.Drawing.Size(75, 23);
             this.cmdCopyLabelsFromSelRec.TabIndex = 12;
@@ -323,7 +325,7 @@
             // 
             // cmdSelectAll
             // 
-            this.cmdSelectAll.Location = new System.Drawing.Point(500, 2);
+            this.cmdSelectAll.Location = new System.Drawing.Point(440, 5);
             this.cmdSelectAll.Name = "cmdSelectAll";
             this.cmdSelectAll.Size = new System.Drawing.Size(75, 23);
             this.cmdSelectAll.TabIndex = 11;
@@ -333,7 +335,7 @@
             // 
             // cmdAddLabel
             // 
-            this.cmdAddLabel.Location = new System.Drawing.Point(581, 2);
+            this.cmdAddLabel.Location = new System.Drawing.Point(521, 5);
             this.cmdAddLabel.Name = "cmdAddLabel";
             this.cmdAddLabel.Size = new System.Drawing.Size(75, 23);
             this.cmdAddLabel.TabIndex = 10;
@@ -344,7 +346,7 @@
             // chkOnlySelectedLabel
             // 
             this.chkOnlySelectedLabel.AutoSize = true;
-            this.chkOnlySelectedLabel.Location = new System.Drawing.Point(372, 8);
+            this.chkOnlySelectedLabel.Location = new System.Drawing.Point(322, 7);
             this.chkOnlySelectedLabel.Name = "chkOnlySelectedLabel";
             this.chkOnlySelectedLabel.Size = new System.Drawing.Size(122, 17);
             this.chkOnlySelectedLabel.TabIndex = 9;
@@ -386,9 +388,9 @@
             this.panelKeyWords.Controls.Add(this.txtKeyWords);
             this.panelKeyWords.Controls.Add(this.panelKWLabel);
             this.panelKeyWords.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelKeyWords.Location = new System.Drawing.Point(666, 0);
+            this.panelKeyWords.Location = new System.Drawing.Point(687, 0);
             this.panelKeyWords.Name = "panelKeyWords";
-            this.panelKeyWords.Size = new System.Drawing.Size(200, 439);
+            this.panelKeyWords.Size = new System.Drawing.Size(179, 439);
             this.panelKeyWords.TabIndex = 5;
             // 
             // panelKeyWordsBottom
@@ -397,12 +399,12 @@
             this.panelKeyWordsBottom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panelKeyWordsBottom.Location = new System.Drawing.Point(0, 411);
             this.panelKeyWordsBottom.Name = "panelKeyWordsBottom";
-            this.panelKeyWordsBottom.Size = new System.Drawing.Size(198, 26);
+            this.panelKeyWordsBottom.Size = new System.Drawing.Size(177, 26);
             this.panelKeyWordsBottom.TabIndex = 14;
             // 
             // cmdCopyKeyWordsFromSelRec
             // 
-            this.cmdCopyKeyWordsFromSelRec.Location = new System.Drawing.Point(120, 2);
+            this.cmdCopyKeyWordsFromSelRec.Location = new System.Drawing.Point(97, 2);
             this.cmdCopyKeyWordsFromSelRec.Name = "cmdCopyKeyWordsFromSelRec";
             this.cmdCopyKeyWordsFromSelRec.Size = new System.Drawing.Size(75, 23);
             this.cmdCopyKeyWordsFromSelRec.TabIndex = 13;
@@ -416,7 +418,7 @@
             this.txtKeyWords.Location = new System.Drawing.Point(0, 21);
             this.txtKeyWords.Multiline = true;
             this.txtKeyWords.Name = "txtKeyWords";
-            this.txtKeyWords.Size = new System.Drawing.Size(198, 416);
+            this.txtKeyWords.Size = new System.Drawing.Size(177, 416);
             this.txtKeyWords.TabIndex = 0;
             // 
             // panelKWLabel
@@ -425,7 +427,7 @@
             this.panelKWLabel.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelKWLabel.Location = new System.Drawing.Point(0, 0);
             this.panelKWLabel.Name = "panelKWLabel";
-            this.panelKWLabel.Size = new System.Drawing.Size(198, 21);
+            this.panelKWLabel.Size = new System.Drawing.Size(177, 21);
             this.panelKWLabel.TabIndex = 13;
             // 
             // lblKeywords
@@ -446,6 +448,16 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(866, 38);
             this.panel8.TabIndex = 6;
+            // 
+            // cmdRemoveLabel
+            // 
+            this.cmdRemoveLabel.Location = new System.Drawing.Point(601, 5);
+            this.cmdRemoveLabel.Name = "cmdRemoveLabel";
+            this.cmdRemoveLabel.Size = new System.Drawing.Size(75, 23);
+            this.cmdRemoveLabel.TabIndex = 13;
+            this.cmdRemoveLabel.Text = "Del label";
+            this.cmdRemoveLabel.UseVisualStyleBackColor = true;
+            this.cmdRemoveLabel.Click += new System.EventHandler(this.cmdRemoveLabel_Click);
             // 
             // RecordForm
             // 
@@ -521,5 +533,6 @@
         private System.Windows.Forms.Button cmdCopyTitleFromSelRec;
         private System.Windows.Forms.Panel panelKeyWordsBottom;
         private System.Windows.Forms.Button cmdCopyKeyWordsFromSelRec;
+        private System.Windows.Forms.Button cmdRemoveLabel;
     }
 }

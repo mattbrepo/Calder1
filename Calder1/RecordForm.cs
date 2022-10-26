@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Calder1
 {
@@ -290,6 +291,43 @@ namespace Calder1
 			_labels.Add(new ListViewItem(label) { Checked = true });
 			UpdateUI();
 		}
+
+        private void cmdRemoveLabel_Click(object sender, EventArgs e)
+        {
+            InputForm labelForm = new InputForm();
+            labelForm.SetInput("Label to be removed: ", "");
+            if (labelForm.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) return;
+            string label = labelForm.GetInputText();
+
+            if (label.Contains(Calder1Repository.CSV_SEP))
+            {
+                MessageBox.Show("Label not valid (" + Calder1Repository.CSV_SEP + ")", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!_labels.Select(x => x.Text).Contains(label))
+            {
+                MessageBox.Show("Label not found", "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            _labels.RemoveAll(x => x.Text == label);
+
+            // remove label in the repository
+            for(int i = 0; i < _repo.Content.Count; i++)
+            {
+                string input = _repo.Content[i].Labels;
+                string pattern = @"\b" + label + @"\b";
+                string result = Regex.Replace(input, pattern, "");
+                _repo.Content[i].Labels = result.Trim();
+            }
+            UpdateUI();
+        }
 
         private void cmdSelectAll_Click(object sender, EventArgs e)
         {

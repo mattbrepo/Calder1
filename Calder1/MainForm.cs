@@ -10,13 +10,19 @@ using System.IO;
 using System.Diagnostics;
 using System.IO.Pipes;
 
+// ------------- TODO
+// - delete a label
+// - manage 'date' in advanced search
+// - add KIND folder?
+// ------------------------
+
 namespace Calder1
 {
 	public partial class MainForm : Form
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.54)";
+        private const string APP_VERSION = "(v0.56)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -688,10 +694,14 @@ namespace Calder1
             }
 
             _recForm.SetRepository(_repo, null, lastSelectedRecord, false);
-			if (filePathOrURL != null && IsValidURL(filePathOrURL))
-				_recForm.SetURL(filePathOrURL);
-			else
-				_recForm.SetFilePath(filePathOrURL);
+            if (filePathOrURL != null && IsValidURL(filePathOrURL))
+            {
+                _recForm.SetURL(filePathOrURL);
+            }
+            else
+            {
+                _recForm.SetFilePath(filePathOrURL);
+            }
             DialogResult dr = _recForm.ShowDialog();
             if (dr != System.Windows.Forms.DialogResult.OK) return;
 
