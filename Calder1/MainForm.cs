@@ -22,7 +22,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.56)";
+        private const string APP_VERSION = "(v0.58)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -864,7 +864,8 @@ namespace Calder1
 
 			bool res = false;
 
-            if (maxShow <= 0 || string.IsNullOrEmpty(searchText))
+            //if (maxShow <= 0 || string.IsNullOrEmpty(searchText))
+            if (maxShow <= 0)
             { 
                 for (int i = 0; i < _repo.Content.Count; i++)
                 {
