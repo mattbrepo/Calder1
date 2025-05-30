@@ -22,7 +22,7 @@ namespace Calder1
 	{
 		#region const
 		private const string APP_NAME = "Calder1";
-        private const string APP_VERSION = "(v0.58)";
+        private const string APP_VERSION = "(v0.60)";
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
@@ -103,6 +103,14 @@ namespace Calder1
             if (Control.ModifierKeys == Keys.Control)
             {
                 this.Font = new Font(this.Font.FontFamily, this.Font.Size + (e.Delta > 0 ? 1 : -1));
+                gridView.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                toolStrip1.Font = this.Font;
+                foreach (ToolStripItem item in toolStrip1.Items)
+                {
+                    item.Font = this.Font;
+                }
+                _searchForm.Font = this.Font;
+                _recForm.Font = this.Font;
             }
         }
 
