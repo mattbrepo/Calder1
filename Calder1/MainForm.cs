@@ -913,9 +913,9 @@ namespace Calder1
             if (_firstShow)
             {
                 _firstShow = false;
-                gridView.Columns[0].Width = 650;
-                gridView.Columns[1].Width = 90;
-                gridView.Columns[2].Width = 250;
+                gridView.Columns[0].Width = 680;
+                gridView.Columns[1].Width = 80;
+                gridView.Columns[2].Width = 230;
                 gridView.Columns[3].Width = 40;
                 gridView.Columns[4].Width = 40;
                 gridView.Columns[5].Width = 40;

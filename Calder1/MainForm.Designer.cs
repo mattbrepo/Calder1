@@ -59,7 +59,7 @@
             this.ssInfoRecord});
             this.statusStrip1.Location = new System.Drawing.Point(0, 608);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 18, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1114, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
@@ -84,7 +84,7 @@
             // 
             // toolStrip1
             // 
-            this.toolStrip1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStrip1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAdd,
             this.tsbSearch,
@@ -124,7 +124,7 @@
             // tstSearch
             // 
             this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.tstSearch.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tstSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tstSearch.Name = "tstSearch";
             this.tstSearch.Size = new System.Drawing.Size(300, 25);
             this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
@@ -170,7 +170,7 @@
             // tscRepo
             // 
             this.tscRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.tscRepo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tscRepo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tscRepo.Name = "tscRepo";
             this.tscRepo.Size = new System.Drawing.Size(532, 25);
             this.tscRepo.ToolTipText = "Repositories (F4)";
@@ -181,7 +181,7 @@
             this.panel1.Controls.Add(this.gridView);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
             this.panel1.Size = new System.Drawing.Size(1114, 583);
@@ -196,9 +196,10 @@
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.gridView.Location = new System.Drawing.Point(7, 0);
-            this.gridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gridView.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.gridView.Name = "gridView";
             this.gridView.RowHeadersWidth = 20;
+            this.gridView.RowTemplate.Height = 28;
             this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gridView.Size = new System.Drawing.Size(1100, 583);
             this.gridView.TabIndex = 0;
@@ -226,10 +227,10 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
-            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
