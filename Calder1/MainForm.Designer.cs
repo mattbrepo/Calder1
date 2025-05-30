@@ -57,9 +57,10 @@
             this.statusLabel,
             this.ssInfoSelected,
             this.ssInfoRecord});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 490);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 608);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(904, 22);
+            this.statusStrip1.Padding = new System.Windows.Forms.Padding(1, 0, 19, 0);
+            this.statusStrip1.Size = new System.Drawing.Size(1114, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -83,6 +84,7 @@
             // 
             // toolStrip1
             // 
+            this.toolStrip1.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsbAdd,
             this.tsbSearch,
@@ -93,7 +95,7 @@
             this.tscRepo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(904, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1114, 25);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -122,6 +124,7 @@
             // tstSearch
             // 
             this.tstSearch.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tstSearch.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tstSearch.Name = "tstSearch";
             this.tstSearch.Size = new System.Drawing.Size(300, 25);
             this.tstSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tstSearch_KeyPress);
@@ -167,8 +170,9 @@
             // tscRepo
             // 
             this.tscRepo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.tscRepo.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tscRepo.Name = "tscRepo";
-            this.tscRepo.Size = new System.Drawing.Size(400, 25);
+            this.tscRepo.Size = new System.Drawing.Size(532, 25);
             this.tscRepo.ToolTipText = "Repositories (F4)";
             this.tscRepo.SelectedIndexChanged += new System.EventHandler(this.tscRepo_SelectedIndexChanged);
             // 
@@ -177,9 +181,10 @@
             this.panel1.Controls.Add(this.gridView);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 25);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(5, 0, 5, 0);
-            this.panel1.Size = new System.Drawing.Size(904, 465);
+            this.panel1.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.panel1.Size = new System.Drawing.Size(1114, 583);
             this.panel1.TabIndex = 2;
             // 
             // gridView
@@ -190,10 +195,12 @@
             this.gridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.gridView.Location = new System.Drawing.Point(5, 0);
+            this.gridView.Location = new System.Drawing.Point(7, 0);
+            this.gridView.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.gridView.Name = "gridView";
+            this.gridView.RowHeadersWidth = 20;
             this.gridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridView.Size = new System.Drawing.Size(894, 465);
+            this.gridView.Size = new System.Drawing.Size(1100, 583);
             this.gridView.TabIndex = 0;
             this.gridView.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_CellDoubleClick);
             this.gridView.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridView_RowEnter);
@@ -213,14 +220,16 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(904, 512);
+            this.ClientSize = new System.Drawing.Size(1114, 630);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.statusStrip1);
+            this.Font = new System.Drawing.Font("Verdana", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";

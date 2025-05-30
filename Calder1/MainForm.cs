@@ -26,12 +26,12 @@ namespace Calder1
 		public const string PIPE_NAME = "Calder1Pipe";
 
 		//--- output table constant
-		private const string TAB_HEADER_KIND = "Kind";
 		private const string TAB_HEADER_TITLE = "Title";
 		private const string TAB_HEADER_DATE = "Date";
 		private const string TAB_HEADER_LABELS = "Labels";
 		private const string TAB_HEADER_FAVORITE = "Fav";
 		private const string TAB_HEADER_LANGUAGE = "Lang";
+        private const string TAB_HEADER_KIND = "Kind";
         private const string TAB_HEADER_INDEX = "Index";
 
 		//--- menu
@@ -365,11 +365,11 @@ namespace Calder1
 
             if (e.KeyCode == Keys.Oemplus && e.Control) // CTRL+
             {
-                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size + 1);
+                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size + 1); //%%% chiamare stessa funzione di zoom
             }
             if (e.KeyCode == Keys.OemMinus && e.Control) // CTRL-
             {
-                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size - 1);
+                gridView.Font = new Font(gridView.Font.Name, gridView.Font.Size - 1); //%%% chiamare stessa funzione di zoom
             }
 
             if (e.KeyCode == Keys.F2) // F2 to edit (check also SHIFT+Return)
@@ -862,13 +862,13 @@ namespace Calder1
 			}
 
 			DataTable table = new DataTable();
-			table.Columns.Add(TAB_HEADER_KIND);
 			table.Columns.Add(TAB_HEADER_TITLE);
 			table.Columns.Add(TAB_HEADER_DATE, typeof(DateTime));
 			table.Columns.Add(TAB_HEADER_LABELS);
 			table.Columns.Add(TAB_HEADER_FAVORITE);
 			table.Columns.Add(TAB_HEADER_LANGUAGE);
-			table.Columns.Add(TAB_HEADER_INDEX);
+            table.Columns.Add(TAB_HEADER_KIND);
+            table.Columns.Add(TAB_HEADER_INDEX);
 
 			bool res = false;
 
@@ -881,7 +881,7 @@ namespace Calder1
                     if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
 				    {
 					    res = true;
-					    table.Rows.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });
+					    table.Rows.Add(new object[] { item.Title, item.Date, item.Labels, item.Favorite, item.Language, item.Kind, i });
 				    }
 			    }
             }
@@ -894,7 +894,7 @@ namespace Calder1
                     if (item.Contains(fields, true, true, matchCase, alsoURL, alsoTitle, alsoLabels, alsoKeywords) && (!favorite || item.IsFavorite()))
                     {
                         res = true;
-                        items.Add(new object[] { item.Kind, item.Title, item.Date, item.Labels, item.Favorite, item.Language, i });
+                        items.Add(new object[] { item.Title, item.Date, item.Labels, item.Favorite, item.Language, item.Kind, i });
                         if (maxShow <= items.Count)
                             break;
                     }
@@ -913,10 +913,10 @@ namespace Calder1
             if (_firstShow)
             {
                 _firstShow = false;
-                gridView.Columns[0].Width = 40;
-                gridView.Columns[1].Width = 450;
-                gridView.Columns[2].Width = 70;
-                gridView.Columns[3].Width = 200;
+                gridView.Columns[0].Width = 650;
+                gridView.Columns[1].Width = 90;
+                gridView.Columns[2].Width = 250;
+                gridView.Columns[3].Width = 40;
                 gridView.Columns[4].Width = 40;
                 gridView.Columns[5].Width = 40;
                 gridView.Columns[6].Width = 50;
