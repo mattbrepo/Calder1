@@ -370,6 +370,13 @@ namespace Calder1
             }
         }
 
+        private void txtTitle_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                cmdOk.PerformClick();
+            }
+        }
         #endregion
 
         #region private function

@@ -283,6 +283,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(704, 22);
             this.txtTitle.TabIndex = 1;
+            this.txtTitle.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTitle_KeyDown);
             // 
             // lblTitle
             // 
